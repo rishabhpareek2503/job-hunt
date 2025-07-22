@@ -18,7 +18,7 @@ export default function JobBoard() {
         </main>
         <aside className="w-full lg:w-[380px] shrink-0 h-full min-h-0">
           <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-white shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <FilterBar />
+            <FilterBar filters={filters} setFilters={setFilters} />
           </div>
         </aside>
       </div>
