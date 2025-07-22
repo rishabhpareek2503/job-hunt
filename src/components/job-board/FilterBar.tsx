@@ -49,7 +49,7 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
   const filteredLocations = allLocations.filter(loc => loc.toLowerCase().includes(locationInput.toLowerCase()) && !(filters.location || []).includes(loc));
 
   // Handle click outside for dropdowns
-  function useClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
+  function useClickOutside(ref: React.RefObject<HTMLDivElement | null>, handler: () => void) {
     useState(() => {
       function listener(event: MouseEvent) {
         if (!ref.current || ref.current.contains(event.target as Node)) return;
