@@ -10,8 +10,23 @@ interface FilterBarProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
+interface CollapsibleSectionProps {
+  title: string;
+  section: string;
+  openSection: string;
+  setOpenSection: React.Dispatch<React.SetStateAction<string>>;
+  children: React.ReactNode;
+}
+
+interface FilterSectionProps {
+  title: string;
+  options: string[];
+  selected: string[];
+  onChange: (value: string) => void;
+}
+
 export default function FilterBar({ filters, setFilters }: FilterBarProps) {
-  const [openSection, setOpenSection] = useState("basic");
+  const [openSection, setOpenSection] = useState<string>("basic");
   const getUniqueValues = (key: keyof Job) => Array.from(new Set(dummyJobs.map(job => job[key]))).filter(Boolean) as string[];
 
   const filterOptions = {
@@ -26,9 +41,8 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
     setFilters(prev => {
       const currentValues = prev[category] || [];
       const newValues = currentValues.includes(value)
-        ? currentValues.filter(v => v !== value)
+        ? currentValues.filter((v: string) => v !== value)
         : [...currentValues, value];
-      
       const newFilters = { ...prev };
       if (newValues.length > 0) newFilters[category] = newValues;
       else delete newFilters[category];
@@ -55,7 +69,6 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
           <FilterSection title="Location" options={filterOptions.location} selected={filters.location || []} onChange={v => handleFilterChange('location', v)} />
           <FilterSection title="Experience Level" options={filterOptions.experience_level} selected={filters.experience_level || []} onChange={v => handleFilterChange('experience_level', v)} />
         </CollapsibleSection>
-        
         <CollapsibleSection title="Company" section="company" openSection={openSection} setOpenSection={setOpenSection}>
           <FilterSection title="Company" options={filterOptions.company} selected={filters.company || []} onChange={v => handleFilterChange('company', v)} />
         </CollapsibleSection>
@@ -64,7 +77,7 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
   );
 }
 
-function CollapsibleSection({ title, section, openSection, setOpenSection, children }: any) {
+function CollapsibleSection({ title, section, openSection, setOpenSection, children }: CollapsibleSectionProps) {
   const isOpen = openSection === section;
   return (
     <div>
@@ -80,7 +93,7 @@ function CollapsibleSection({ title, section, openSection, setOpenSection, child
   );
 }
 
-function FilterSection({ title, options, selected, onChange }: any) {
+function FilterSection({ title, options, selected, onChange }: FilterSectionProps) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
       <h6 className="text-sm font-semibold text-gray-800 mb-4">{title}</h6>

@@ -45,7 +45,7 @@ export default function CenterContent({ filters, setFilters }: CenterContentProp
   });
 
   return (
-    <div className="flex flex-col bg-[#e9ecef] h-full w-full rounded-3xl overflow-y-auto md:px-2 lg:px-3">
+    <div className="flex flex-col bg-[#e9ecef] h-full w-full rounded-3xl overflow-y-auto md:px-2 lg:px-3 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       <div className="sticky top-0 z-10 mb-4 w-full bg-[#e9ecef] rounded-t-xl px-4 py-3">
         <div className="flex flex-col md:flex-row justify-between items-center gap-2">
           <div className="flex flex-wrap gap-2 items-center">
@@ -93,6 +93,11 @@ export default function CenterContent({ filters, setFilters }: CenterContentProp
       <div className="px-2">
         {isLoading ? <CardSkeleton /> : <JobPostings jobs={filteredJobs} />}
       </div>
+      <style jsx global>{`
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 } 
