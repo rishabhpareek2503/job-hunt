@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { FaUserPlus, FaSignInAlt, FaUserCircle, FaSearch, FaFileAlt, FaPaperPlane } from "react-icons/fa";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { FaBriefcase } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -50,47 +52,60 @@ const steps = [
 ];
 
 export default function HomePage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Floating Login/Signup Buttons */}
-      <div className="fixed top-4 right-8 z-50 flex gap-4">
+      <div className="fixed top-0 right-0 z-50 flex gap-4 p-6">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
       </div>
-
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center pt-12 pb-8 px-4">
-        <div className="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center" style={{minHeight: '220px'}}>
-          {/* Floating company logos - left */}
-          <Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={32} height={32} className="absolute left-[-50px] top-[20px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam1" />
-          <Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={32} height={32} className="absolute left-[-40px] top-[100px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam2" />
-          <Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={32} height={32} className="absolute left-[-30px] top-[180px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam3" />
-          {/* Floating company logos - right */}
-          <Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={32} height={32} className="absolute right-[-50px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam4" />
-          <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={32} height={32} className="absolute right-[-40px] top-[120px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam5" />
-          <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={32} height={32} className="absolute right-[-30px] top-[200px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam6" />
+      <section className="relative flex flex-col items-center justify-center pt-10 pb-8 px-4">
+        <div className="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center" style={{minHeight: '320px'}}>
+          {/* Floating company logos - left (more symmetrical, spaced) */}
+          <Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={32} height={32} className="absolute left-[-70px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam1" />
+          <Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={32} height={32} className="absolute left-[-70px] top-[130px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam2" />
+          <Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={32} height={32} className="absolute left-[-70px] top-[220px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam3" />
+          {/* Floating company logos - right (more symmetrical, spaced) */}
+          <Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={32} height={32} className="absolute right-[-70px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam4" />
+          <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={32} height={32} className="absolute right-[-70px] top-[130px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam5" />
+          <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={32} height={32} className="absolute right-[-70px] top-[220px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam6" />
           {/* Main content */}
-          <div className="flex flex-col items-center z-10 relative">
-            <span className="text-xs font-semibold bg-blue-600 text-white px-4 py-1 rounded-full mb-2 shadow">No.1 Job Hunt Website</span>
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.15] text-center mb-6 drop-shadow-lg">
+          <div className="flex flex-col items-center z-10 relative w-full">
+            {/* Center the badge above the heading with more margin */}
+            <span className="text-xs font-semibold bg-blue-600 text-white px-4 py-1 rounded-full mb-4 mt-2 shadow">No.1 Job Hunt Website</span>
+            {/* Soften or remove text shadow on heading */}
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.15] text-center mb-4">
               Search,<span className="text-blue-600">Apply</span> &<br />Get Your <span className="text-blue-600">Dream Job</span>
             </h1>
-            <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-6">
+            {/* Reduce vertical gap below heading */}
+            <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-4">
               Start your hunt for the best, life-changing career opportunities from here in your selected areas conveniently and get hired quickly.
             </p>
-            <div className="flex justify-center mb-8">
-              <button className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-lg flex items-center gap-2">How it Works? <HiOutlineArrowNarrowRight className="ml-1 w-5 h-5" /></button>
+            {/* Reduce vertical gap below subheading */}
+            <div className="flex justify-center gap-3 mt-6 mb-10">
+              <button
+                className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-full shadow-md hover:from-blue-600 hover:to-blue-800 transition text-base flex items-center gap-2 border-2 border-blue-500"
+                onClick={() => router.push('/jobs')}
+              >
+                <FaBriefcase className="w-4 h-4 mr-1" /> Browse Jobs
+              </button>
+              <button className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-full shadow-md hover:bg-blue-700 transition text-base flex items-center gap-2 border-2 border-blue-500">
+                How it Works? <HiOutlineArrowNarrowRight className="ml-1 w-4 h-4" />
+              </button>
             </div>
-            <div className="flex flex-wrap gap-3 justify-center">
+            {/* Chips: lighter outline, consistent grid, gap-x-4 gap-y-3 */}
+            <div className="flex flex-wrap gap-x-2 gap-y-2 justify-center">
               {chips.filter(chip => chip.label && chip.label.trim()).map((chip, idx) => (
                 <span
                   key={idx}
                   className={
                     chip.color === "purple"
-                      ? "px-5 py-2 bg-blue-600 text-white font-semibold rounded-full text-sm shadow"
+                      ? "px-4 py-1.5 bg-blue-600 text-white font-semibold rounded-full text-xs shadow"
                       : chip.color === "purple-outline"
-                      ? "px-5 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-full text-sm bg-blue-100"
-                      : "px-5 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full text-sm"
+                      ? "px-4 py-1.5 border-2 border-blue-200 text-blue-600 font-semibold rounded-full text-xs bg-blue-50"
+                      : "px-4 py-1.5 bg-blue-100 text-blue-700 font-semibold rounded-full text-xs"
                   }
                 >
                   {chip.label}

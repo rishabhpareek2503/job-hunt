@@ -82,3 +82,13 @@
 .animate-roam4 { animation: roam4 8.5s ease-in-out infinite alternate; }
 .animate-roam5 { animation: roam5 9.5s ease-in-out infinite alternate; }
 .animate-roam6 { animation: roam6 7.8s ease-in-out infinite alternate; } 
+@media (max-width: 900px) {
+  .absolute.left-\[-70px\], .absolute.right-\[-70px\] {
+    left: -36px !important;
+    right: -36px !important;
+  }
+  .hero-section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+} 
