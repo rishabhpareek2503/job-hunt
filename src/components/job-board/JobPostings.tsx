@@ -1,6 +1,6 @@
 import { Job } from "@/lib/types";
 import Image from "next/image";
-import { Briefcase, MapPin, IndianRupee, Bookmark, MoreHorizontal, Timer, BookOpen } from "lucide-react";
+import { Briefcase, MapPin, IndianRupee, Bookmark, MoreHorizontal, Timer} from "lucide-react";
 
 interface JobPostingsProps {
   jobs: Job[];

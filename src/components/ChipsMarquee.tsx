@@ -1,20 +1,22 @@
 "use client";
 import React from "react";
 
-function splitChips(chipsArr: any[], numRows: number) {
-  const rows = Array.from({ length: numRows }, () => []);
+export type Chip = { label: string; color: string };
+
+function splitChips<T>(chipsArr: T[], numRows: number): T[][] {
+  const rows: T[][] = Array.from({ length: numRows }, () => []);
   chipsArr.forEach((chip, i) => rows[i % numRows].push(chip));
   return rows;
 }
 
-export default function ChipsMarquee({ chips }: { chips: { label: string; color: string }[] }) {
+export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
   const chipRows = splitChips(chips, 3);
   return (
     <div className="w-full flex flex-col gap-2 items-center mt-8 mb-2">
       {chipRows.map((row, rowIdx) => (
         <div
-          key={rowIdx}
-          className={`relative w-full overflow-x-hidden flex`}
+          key={"row-" + rowIdx}
+          className="relative w-full overflow-x-hidden flex"
           style={{ height: '44px' }}
         >
           <div
@@ -23,7 +25,7 @@ export default function ChipsMarquee({ chips }: { chips: { label: string; color:
           >
             {row.map((chip, idx) => (
               <span
-                key={idx}
+                key={chip.label + '-' + chip.color + '-' + idx}
                 className={
                   chip.color === "purple"
                     ? "px-4 py-1.5 bg-blue-600 text-white font-semibold rounded-full text-base shadow hover:scale-105 transition"
@@ -38,7 +40,7 @@ export default function ChipsMarquee({ chips }: { chips: { label: string; color:
             {/* Duplicate for seamless loop */}
             {row.map((chip, idx) => (
               <span
-                key={"dup-" + idx}
+                key={"dup-" + chip.label + '-' + chip.color + '-' + idx}
                 className={
                   chip.color === "purple"
                     ? "px-4 py-1.5 bg-blue-600 text-white font-semibold rounded-full text-base shadow hover:scale-105 transition"

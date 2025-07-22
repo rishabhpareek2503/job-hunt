@@ -11,6 +11,8 @@ import ChipsMarquee from "../components/ChipsMarquee";
 import HowItWorksSection from "../components/HowItWorksSection";
 import TopCompaniesSection, { Company } from "../components/TopCompaniesSection";
 import FeaturedJobsSection from "../components/FeaturedJobsSection";
+import Footer from "../components/Footer";
+import FAQSection from "../components/FAQSection";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -74,6 +76,7 @@ export default function HomePage() {
       <HowItWorksSection ref={howItWorksRef} />
       <TopCompaniesSection companies={companies} />
       <FeaturedJobsSection onViewAll={() => router.push('/jobs')} />
+      <Footer />
     </div>
   );
 }
