@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex min-h-screen">
           {showLeftBar && <LeftBar />}
-          <main className="flex-1">{children}</main>
+          <main className={`flex-1 ${showLeftBar ? 'ml-20' : ''}`}>{children}</main>
         </div>
       </body>
     </html>

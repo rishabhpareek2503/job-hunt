@@ -40,19 +40,12 @@ const navItems = [
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v4.5M21 10.5a2.5 2.5 0 01-5 0M21 10.5V18a2 2 0 01-2 2H5a2 2 0 01-2-2v-7.5M3 10.5a2.5 2.5 0 005 0" /></svg>
     ),
   },
-  {
-    href: "/hot-resumes",
-    label: "Hot Resumes",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2m6.364 1.636l-1.414 1.414M21 12h-2M17.364 17.364l-1.414-1.414M12 21v-2M6.636 17.364l1.414-1.414M3 12h2M6.636 6.636l1.414 1.414" /></svg>
-    ),
-  },
 ];
 
 export default function LeftBar() {
   const pathname = usePathname();
   return (
-    <nav className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-8 shadow-sm">
+    <nav className="fixed h-screen top-0 left-0 z-40 w-20 bg-white border-r border-gray-200 flex flex-col items-center py-8 shadow-sm">
       <div className="mb-10 flex justify-center w-full">
         <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
           <Image src="/logo.png" alt="Logo" width={40} height={40} className="rounded-full" priority />

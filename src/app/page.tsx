@@ -53,7 +53,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Floating Login/Signup Buttons */}
-      <div className="fixed top-6 right-8 z-50 flex gap-4">
+      <div className="fixed top-4 right-8 z-50 flex gap-4">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
       </div>
@@ -62,17 +62,17 @@ export default function HomePage() {
       <section className="relative flex flex-col items-center justify-center pt-12 pb-8 px-4">
         <div className="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center" style={{minHeight: '220px'}}>
           {/* Floating company logos - left */}
-          <Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={44} height={44} className="absolute left-[-70px] top-[20px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
-          <Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={44} height={44} className="absolute left-[-60px] top-[100px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
-          <Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={44} height={44} className="absolute left-[-50px] top-[180px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={32} height={32} className="absolute left-[-50px] top-[20px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam1" />
+          <Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={32} height={32} className="absolute left-[-40px] top-[100px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam2" />
+          <Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={32} height={32} className="absolute left-[-30px] top-[180px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam3" />
           {/* Floating company logos - right */}
-          <Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={44} height={44} className="absolute right-[-70px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
-          <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={44} height={44} className="absolute right-[-60px] top-[120px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
-          <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={44} height={44} className="absolute right-[-50px] top-[200px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={32} height={32} className="absolute right-[-50px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam4" />
+          <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={32} height={32} className="absolute right-[-40px] top-[120px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam5" />
+          <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={32} height={32} className="absolute right-[-30px] top-[200px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam6" />
           {/* Main content */}
           <div className="flex flex-col items-center z-10 relative">
             <span className="text-xs font-semibold bg-blue-600 text-white px-4 py-1 rounded-full mb-2 shadow">No.1 Job Hunt Website</span>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.1] text-center mb-6 drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-[1.15] text-center mb-6 drop-shadow-lg">
               Search,<span className="text-blue-600">Apply</span> &<br />Get Your <span className="text-blue-600">Dream Job</span>
             </h1>
             <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-6">

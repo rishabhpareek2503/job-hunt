@@ -120,3 +120,59 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Company logo roaming animations */
+@keyframes roam1 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(10px,8px); }
+  40% { transform: translate(-8px,12px); }
+  60% { transform: translate(6px,-10px); }
+  80% { transform: translate(-6px,6px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes roam2 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-12px,6px); }
+  40% { transform: translate(8px,-10px); }
+  60% { transform: translate(-10px,10px); }
+  80% { transform: translate(10px,-6px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes roam3 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(8px,-8px); }
+  40% { transform: translate(-10px,10px); }
+  60% { transform: translate(10px,6px); }
+  80% { transform: translate(-8px,-10px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes roam4 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-8px,10px); }
+  40% { transform: translate(12px,-8px); }
+  60% { transform: translate(-6px,8px); }
+  80% { transform: translate(8px,-12px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes roam5 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(10px,-10px); }
+  40% { transform: translate(-12px,8px); }
+  60% { transform: translate(8px,12px); }
+  80% { transform: translate(-10px,-8px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes roam6 {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-10px,12px); }
+  40% { transform: translate(10px,-8px); }
+  60% { transform: translate(-8px,10px); }
+  80% { transform: translate(12px,-10px); }
+  100% { transform: translate(0,0); }
+}
+.animate-roam1 { animation: roam1 8s ease-in-out infinite alternate; }
+.animate-roam2 { animation: roam2 9s ease-in-out infinite alternate; }
+.animate-roam3 { animation: roam3 7.5s ease-in-out infinite alternate; }
+.animate-roam4 { animation: roam4 8.5s ease-in-out infinite alternate; }
+.animate-roam5 { animation: roam5 9.5s ease-in-out infinite alternate; }
+.animate-roam6 { animation: roam6 7.8s ease-in-out infinite alternate; }
