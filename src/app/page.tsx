@@ -1,9 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { FaUserPlus, FaSignInAlt, FaUserCircle, FaSearch, FaFileAlt, FaPaperPlane } from "react-icons/fa";
-import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-import { FaBriefcase } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import HeroSection from "../components/HeroSection";
@@ -12,7 +8,6 @@ import HowItWorksSection from "../components/HowItWorksSection";
 import TopCompaniesSection, { Company } from "../components/TopCompaniesSection";
 import FeaturedJobsSection from "../components/FeaturedJobsSection";
 import Footer from "../components/Footer";
-import FAQSection from "../components/FAQSection";
 
 const navLinks = [
   { label: "Home", href: "#" },
