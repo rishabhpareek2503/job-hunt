@@ -92,3 +92,6 @@
     padding-right: 1rem !important;
   }
 } 
+html, body {
+  background-color: #f6f9fc;
+} 

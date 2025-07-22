@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 
 export type Company = {
   name: string;
@@ -46,8 +47,9 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
           <rect width="1440" height="320" fill="url(#companyBg)" />
         </svg>
       </div>
-      <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-2">
-        Top Companies Hiring Now
+      <h2 className="text-xl md:text-2xl font-extrabold text-center flex items-center justify-center gap-2 mb-2">
+        <FaBuilding className="text-blue-500 w-5 h-5" />
+        <span className="text-black">Top Companies</span> <span className="text-blue-600">Hiring Now</span>
       </h2>
       <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
         Get hired by the world’s best. Explore opportunities at these leading organizations.

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { dummyJobs } from "../lib/dummy-jobs";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight, FaArrowLeft, FaStar } from "react-icons/fa";
 
 const brandColors: Record<string, string> = {
   Google: "#4285F4",
@@ -46,8 +46,9 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
           <rect width="1440" height="320" fill="url(#featuredJobsBg)" />
         </svg>
       </div>
-      <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-2">
-        Featured Jobs
+      <h2 className="text-xl md:text-2xl font-extrabold text-center flex items-center justify-center gap-2 mb-2">
+        <FaStar className="text-yellow-400 w-5 h-5" />
+        <span className="text-black">Featured</span> <span className="text-blue-600">Jobs</span>
       </h2>
       <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
         Explore top opportunities handpicked for you. Apply now to get ahead in your career!
