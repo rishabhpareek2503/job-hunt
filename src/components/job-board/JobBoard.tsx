@@ -3,7 +3,6 @@
 import { useState } from "react";
 import CenterContent from "./CenterContent";
 import FilterBar from "./FilterBar";
-import TopBar from "./TopBar";
 import { Filters } from "@/lib/types";
 
 export default function JobBoard() {
@@ -11,8 +10,7 @@ export default function JobBoard() {
 
   return (
     <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
-      <TopBar />
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 mt-6 min-h-0">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 mt-0 min-h-0">
         <main className="flex-1 flex flex-col overflow-hidden min-h-0">
           <div className="h-full min-h-0 flex-1 overflow-y-auto rounded-3xl bg-[#e9ecef] scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <CenterContent filters={filters} setFilters={setFilters} />

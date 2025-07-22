@@ -20,4 +20,5 @@ export type Filters = {
   industry_type?: string[];
   company?: string[];
   experience_level?: string[];
+  title?: string[];
 }; 

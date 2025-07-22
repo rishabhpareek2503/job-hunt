@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Job, Filters } from "@/lib/types";
 import { dummyJobs } from "@/lib/dummy-jobs";
-import { IoFilterOutline, IoRefreshOutline, IoChevronDownOutline } from "react-icons/io5";
+import { IoFilterOutline, IoRefreshOutline, IoChevronDownOutline, IoSearchOutline, IoCloseOutline } from "react-icons/io5";
 
 interface FilterBarProps {
   filters: Filters;
@@ -27,15 +27,40 @@ interface FilterSectionProps {
 
 export default function FilterBar({ filters, setFilters }: FilterBarProps) {
   const [openSection, setOpenSection] = useState<string>("basic");
-  const getUniqueValues = (key: keyof Job) => Array.from(new Set(dummyJobs.map(job => job[key]))).filter(Boolean) as string[];
+  const [titleInput, setTitleInput] = useState("");
+  const [locationInput, setLocationInput] = useState("");
+  const [showTitleDropdown, setShowTitleDropdown] = useState(false);
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const locationRef = useRef<HTMLDivElement>(null);
 
+  // Extract unique values
+  const allTitles = Array.from(new Set(dummyJobs.map(job => job.title))).sort();
+  const allLocations = Array.from(new Set(dummyJobs.map(job => job.location))).sort();
   const filterOptions = {
-    job_type: getUniqueValues('job_type'),
-    work_mode: getUniqueValues('work_mode'),
-    location: getUniqueValues('location'),
-    experience_level: getUniqueValues('experience_level'),
-    company: getUniqueValues('company'),
+    job_type: Array.from(new Set(dummyJobs.map(job => job.job_type))).filter(Boolean) as string[],
+    work_mode: Array.from(new Set(dummyJobs.map(job => job.work_mode))).filter(Boolean) as string[],
+    experience_level: Array.from(new Set(dummyJobs.map(job => job.experience_level))).filter(Boolean) as string[],
+    company: Array.from(new Set(dummyJobs.map(job => job.company))).filter(Boolean) as string[],
   };
+
+  // Dropdown filtering
+  const filteredTitles = allTitles.filter(title => title.toLowerCase().includes(titleInput.toLowerCase()) && !(filters.title || []).includes(title));
+  const filteredLocations = allLocations.filter(loc => loc.toLowerCase().includes(locationInput.toLowerCase()) && !(filters.location || []).includes(loc));
+
+  // Handle click outside for dropdowns
+  function useClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
+    useState(() => {
+      function listener(event: MouseEvent) {
+        if (!ref.current || ref.current.contains(event.target as Node)) return;
+        handler();
+      }
+      document.addEventListener("mousedown", listener);
+      return () => document.removeEventListener("mousedown", listener);
+    });
+  }
+  useClickOutside(titleRef, () => setShowTitleDropdown(false));
+  useClickOutside(locationRef, () => setShowLocationDropdown(false));
 
   const handleFilterChange = (category: keyof Filters, value: string) => {
     setFilters(prev => {
@@ -48,6 +73,23 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
       else delete newFilters[category];
       return newFilters;
     });
+  };
+
+  // Add title/location from dropdown
+  const handleAddTitle = (title: string) => {
+    handleFilterChange('title', title);
+    setTitleInput("");
+    setShowTitleDropdown(false);
+  };
+  const handleAddLocation = (loc: string) => {
+    handleFilterChange('location', loc);
+    setLocationInput("");
+    setShowLocationDropdown(false);
+  };
+
+  // Remove chip
+  const handleRemoveChip = (category: keyof Filters, value: string) => {
+    handleFilterChange(category, value);
   };
 
   return (
@@ -64,9 +106,82 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
 
       <div className="overflow-y-auto space-y-7 mt-7 pr-2">
         <CollapsibleSection title="Basic Criteria" section="basic" openSection={openSection} setOpenSection={setOpenSection}>
+          {/* Title Search */}
+          <div className="mb-4" ref={titleRef}>
+            <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-1.5">Job Title</label>
+            <div className="relative">
+              <input
+                className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+                type="text"
+                placeholder="Search job titles"
+                value={titleInput}
+                onChange={e => { setTitleInput(e.target.value); setShowTitleDropdown(true); }}
+                onFocus={() => setShowTitleDropdown(true)}
+              />
+              <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              {showTitleDropdown && filteredTitles.length > 0 && (
+                <div className="absolute left-0 right-0 z-50 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                  {filteredTitles.map(option => (
+                    <div
+                      key={option}
+                      className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 hover:text-blue-700 transition-colors duration-200"
+                      onClick={() => handleAddTitle(option)}
+                    >
+                      {option}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            {/* Chips */}
+            <div className="mt-2 flex flex-wrap gap-2">
+              {(filters.title || []).map((value: string) => (
+                <span key={value} className="flex items-center gap-1 bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-1 rounded-full">
+                  {value}
+                  <button onClick={() => handleRemoveChip('title', value)} className="text-blue-600 hover:text-blue-800"><IoCloseOutline className="w-4 h-4" /></button>
+                </span>
+              ))}
+            </div>
+          </div>
+          {/* Location Search */}
+          <div className="mb-4" ref={locationRef}>
+            <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-1.5">Location</label>
+            <div className="relative">
+              <input
+                className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+                type="text"
+                placeholder="Search locations"
+                value={locationInput}
+                onChange={e => { setLocationInput(e.target.value); setShowLocationDropdown(true); }}
+                onFocus={() => setShowLocationDropdown(true)}
+              />
+              <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              {showLocationDropdown && filteredLocations.length > 0 && (
+                <div className="absolute left-0 right-0 z-50 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                  {filteredLocations.map(option => (
+                    <div
+                      key={option}
+                      className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 hover:text-blue-700 transition-colors duration-200"
+                      onClick={() => handleAddLocation(option)}
+                    >
+                      {option}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            {/* Chips */}
+            <div className="mt-2 flex flex-wrap gap-2">
+              {(filters.location || []).map((value: string) => (
+                <span key={value} className="flex items-center gap-1 bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-1 rounded-full">
+                  {value}
+                  <button onClick={() => handleRemoveChip('location', value)} className="text-blue-600 hover:text-blue-800"><IoCloseOutline className="w-4 h-4" /></button>
+                </span>
+              ))}
+            </div>
+          </div>
           <FilterSection title="Job Type" options={filterOptions.job_type} selected={filters.job_type || []} onChange={v => handleFilterChange('job_type', v)} />
           <FilterSection title="Work Mode" options={filterOptions.work_mode} selected={filters.work_mode || []} onChange={v => handleFilterChange('work_mode', v)} />
-          <FilterSection title="Location" options={filterOptions.location} selected={filters.location || []} onChange={v => handleFilterChange('location', v)} />
           <FilterSection title="Experience Level" options={filterOptions.experience_level} selected={filters.experience_level || []} onChange={v => handleFilterChange('experience_level', v)} />
         </CollapsibleSection>
         <CollapsibleSection title="Company" section="company" openSection={openSection} setOpenSection={setOpenSection}>
