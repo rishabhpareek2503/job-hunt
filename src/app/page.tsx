@@ -52,63 +52,51 @@ const steps = [
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Header */}
-      <header className="w-full flex items-center justify-between px-12 py-6 bg-white z-30">
-        <div className="flex items-center gap-2 select-none">
-          <span className="text-3xl font-black tracking-tight" style={{ color: '#6C63FF' }}>Job</span>
-          <span className="text-3xl font-black tracking-tight" style={{ color: '#FF6C3A' }}>hunt</span>
-        </div>
-        <nav className="hidden md:flex gap-8 text-gray-700 font-semibold text-base">
-          {navLinks.map(link => (
-            <a key={link.label} href={link.href} className="hover:text-brand-purple transition">{link.label}</a>
-          ))}
-        </nav>
-        <div className="flex gap-4">
-          <button className="px-6 py-2 border-2 border-brand-purple text-brand-purple font-bold rounded-full bg-white hover:bg-brand-purple-light transition">Login</button>
-          <button className="px-6 py-2 bg-brand-purple text-white font-bold rounded-full shadow hover:bg-brand-purple/90 transition">Register</button>
-        </div>
-      </header>
+      {/* Floating Login/Signup Buttons */}
+      <div className="fixed top-6 right-8 z-50 flex gap-4">
+        <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
+        <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
+      </div>
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center pt-12 pb-8 px-4 overflow-hidden">
-        {/* Floating icons/logos */}
-        <div className="absolute left-10 top-10 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={32} height={32} /></div>
-        <div className="absolute right-24 top-24 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={32} height={32} /></div>
-        <div className="absolute left-1/4 top-1/2 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={32} height={32} /></div>
-        <div className="absolute right-1/4 top-1/3 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/microsoft.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Microsoft" width={32} height={32} /></div>
-        <div className="absolute bottom-10 right-10 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={32} height={32} /></div>
-        <div className="absolute left-1/3 bottom-1/4 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={32} height={32} /></div>
-        <div className="absolute right-1/3 bottom-1/2 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={32} height={32} /></div>
-        <div className="absolute left-24 bottom-10 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/spotify.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Spotify" width={32} height={32} /></div>
-        <div className="absolute top-1/2 right-10 w-8 h-8 opacity-80"><Image src="https://img.logo.dev/adobe.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Adobe" width={32} height={32} /></div>
-        {/* Main content */}
-        <div className="flex flex-col items-center z-10">
-          <span className="text-xs font-semibold text-brand-orange bg-brand-orange-light px-3 py-1 rounded-full mb-4">No.1 Job Hunt Website</span>
-          <h1 className="text-5xl md:text-6xl font-black text-gray-900 text-center leading-tight mb-4">
-            Search,<span className="text-brand-purple">Apply</span> &<br />Get Your <span className="text-brand-purple">Dream Job</span>
-          </h1>
-          <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-6">
-            Start your hunt for the best, life-changing career opportunities from here in your selected areas conveniently and get hired quickly.
-          </p>
-          <div className="flex gap-4 mb-6">
-            <button className="px-8 py-3 bg-brand-purple text-white font-bold rounded-full shadow hover:bg-brand-purple/90 transition text-lg flex items-center gap-2">Browse Jobs</button>
-            <button className="px-8 py-3 border-2 border-brand-purple text-brand-purple font-bold rounded-full bg-white hover:bg-brand-purple-light transition text-lg flex items-center gap-2">How it Works? <HiOutlineArrowNarrowRight className="ml-1 w-5 h-5" /></button>
-          </div>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {chips.map((chip, idx) => (
-              <span
-                key={idx}
-                className={
-                  chip.color === "purple"
-                    ? "px-5 py-2 bg-brand-purple text-white font-semibold rounded-full text-sm shadow"
-                    : chip.color === "purple-outline"
-                    ? "px-5 py-2 border-2 border-brand-purple text-brand-purple font-semibold rounded-full text-sm bg-white"
-                    : "px-5 py-2 bg-gray-200 text-gray-700 font-semibold rounded-full text-sm"
-                }
-              >
-                {chip.label}
-              </span>
-            ))}
+      <section className="relative flex flex-col items-center justify-center pt-12 pb-8 px-4">
+        <div className="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center" style={{minHeight: '220px'}}>
+          {/* Floating company logos - left */}
+          <Image src="https://img.logo.dev/google.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Google" width={44} height={44} className="absolute left-[-70px] top-[20px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/linkedin.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="LinkedIn" width={44} height={44} className="absolute left-[-60px] top-[100px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/meta.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Meta" width={44} height={44} className="absolute left-[-50px] top-[180px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          {/* Floating company logos - right */}
+          <Image src="https://img.logo.dev/amazon.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Amazon" width={44} height={44} className="absolute right-[-70px] top-[40px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={44} height={44} className="absolute right-[-60px] top-[120px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={44} height={44} className="absolute right-[-50px] top-[200px] rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
+          {/* Main content */}
+          <div className="flex flex-col items-center z-10 relative">
+            <span className="text-xs font-semibold bg-blue-600 text-white px-4 py-1 rounded-full mb-2 shadow">No.1 Job Hunt Website</span>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.1] text-center mb-6 drop-shadow-lg">
+              Search,<span className="text-blue-600">Apply</span> &<br />Get Your <span className="text-blue-600">Dream Job</span>
+            </h1>
+            <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-6">
+              Start your hunt for the best, life-changing career opportunities from here in your selected areas conveniently and get hired quickly.
+            </p>
+            <div className="flex justify-center mb-8">
+              <button className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-lg flex items-center gap-2">How it Works? <HiOutlineArrowNarrowRight className="ml-1 w-5 h-5" /></button>
+            </div>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {chips.filter(chip => chip.label && chip.label.trim()).map((chip, idx) => (
+                <span
+                  key={idx}
+                  className={
+                    chip.color === "purple"
+                      ? "px-5 py-2 bg-blue-600 text-white font-semibold rounded-full text-sm shadow"
+                      : chip.color === "purple-outline"
+                      ? "px-5 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-full text-sm bg-blue-100"
+                      : "px-5 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full text-sm"
+                  }
+                >
+                  {chip.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
