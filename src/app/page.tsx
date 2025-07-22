@@ -5,6 +5,7 @@ import { FaUserPlus, FaSignInAlt, FaUserCircle, FaSearch, FaFileAlt, FaPaperPlan
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { FaBriefcase } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -53,6 +54,7 @@ const steps = [
 
 export default function HomePage() {
   const router = useRouter();
+  const howItWorksRef = useRef<HTMLDivElement>(null);
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Floating Login/Signup Buttons */}
@@ -94,7 +96,14 @@ export default function HomePage() {
               >
                 <FaBriefcase className="w-4 h-4 mr-1" /> Browse Jobs
               </button>
-              <button className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-full shadow-md hover:bg-blue-700 transition text-base flex items-center gap-2 border-2 border-blue-500">
+              <button
+                className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-full shadow-md hover:bg-blue-700 transition text-base flex items-center gap-2 border-2 border-blue-500"
+                onClick={() => {
+                  if (howItWorksRef.current) {
+                    howItWorksRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 How it Works? <HiOutlineArrowNarrowRight className="ml-1 w-4 h-4" />
               </button>
             </div>
@@ -120,7 +129,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section - World-Class Polish */}
-      <section className="relative w-full flex flex-col items-center py-20 px-4 bg-gradient-to-b from-blue-50/70 to-white overflow-x-hidden">
+      <section ref={howItWorksRef} className="relative w-full flex flex-col items-center py-20 px-4 bg-gradient-to-b from-blue-50/70 to-white overflow-x-hidden">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3">
           Get Hired in <span className="text-blue-600">4 Quick Easy Steps</span>
         </h2>
