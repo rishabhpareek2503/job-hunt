@@ -93,7 +93,7 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
   };
 
   return (
-    <aside className="h-full w-full p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+    <aside className="h-full w-full p-6 bg-white border border-gray-200">
       <div className="flex items-center justify-between border-b-2 border-gray-100 pb-5">
         <div className="flex items-center gap-2.5">
           <div className="p-2 bg-blue-50 rounded-xl"><IoFilterOutline className="w-6 h-6 text-blue-600" /></div>
