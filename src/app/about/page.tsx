@@ -42,7 +42,7 @@ export default function AboutPage() {
         </div>
         <div className="w-full max-w-2xl mx-auto bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl shadow-lg p-8 flex flex-col items-center mt-8">
           <h2 className="text-2xl font-bold text-white mb-2">Join Us On Our Journey!</h2>
-          <p className="text-white text-base mb-4">Whether you're a job seeker or a company looking for talent, JobHunt is here to help you succeed. Explore our platform, connect with our team, and take the next step in your journey today.</p>
+          <p className="text-white text-base mb-4">Whether you&apos;re a job seeker or a company looking for talent, JobHunt is here to help you succeed. Explore our platform, connect with our team, and take the next step in your journey today.</p>
           <a href="/jobs" className="px-6 py-3 bg-white text-blue-700 font-bold rounded-full shadow hover:bg-blue-100 transition text-lg">Browse Jobs</a>
         </div>
       </div>
