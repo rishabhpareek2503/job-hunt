@@ -22,14 +22,14 @@ const getCardsToShow = () => (typeof window !== 'undefined' && window.innerWidth
 
 export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => void }) {
   const jobs = dummyJobs;
-  const [cardsToShow, setCardsToShow] = useState(getCardsToShow());
+  const [cardsToShow, setCardsToShow] = useState(3); // Always start with 3 for SSR
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     function handleResize() {
-      setCardsToShow(getCardsToShow());
+      setCardsToShow(window.innerWidth < 768 ? 1 : 3);
     }
+    handleResize(); // Set on mount
     window.addEventListener('resize', handleResize);
-    setCardsToShow(getCardsToShow());
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
             <FaArrowLeft className="w-5 h-5 text-blue-600" />
           </button>
         </div>
-        <div className={`flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
+        <div key={cardsToShow} className={`flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
           {visibleJobs.map((job, idx) => {
             const color = brandColors[job.company] || "#2563eb";
             return (
