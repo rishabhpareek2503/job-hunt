@@ -50,12 +50,12 @@ export default function HomePage() {
     { name: "Twitter", logoUrl: "https://img.logo.dev/twitter.com?token=pk_GXHi5vUDRwm1xphnJaliqA" },
   ];
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="flex flex-col min-h-screen bg-white">
       {/* Floating Login/Signup Buttons */}
       <div className="fixed top-0 right-0 z-50 flex gap-4 p-6">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
-        </div>
+      </div>
       {/* Hero Section with ChipsMarquee as children */}
       <HeroSection
         onHowItWorksClick={() => {
