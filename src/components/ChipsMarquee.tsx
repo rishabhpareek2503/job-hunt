@@ -28,10 +28,10 @@ export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
                 key={chip.label + '-' + chip.color + '-' + idx}
                 className={
                   chip.color === "purple"
-                    ? "px-4 py-1.5 bg-blue-600 text-white font-semibold rounded-full text-base shadow hover:scale-105 transition"
+                    ? "px-4 py-1.5 bg-blue-600 text-white dark:bg-primary dark:text-primary-foreground font-semibold rounded-full text-base shadow hover:scale-105 transition"
                     : chip.color === "purple-outline"
-                    ? "px-4 py-1.5 border-2 border-blue-200 text-blue-600 font-semibold rounded-full text-base bg-blue-50 hover:scale-105 transition"
-                    : "px-4 py-1.5 bg-blue-100 text-blue-700 font-semibold rounded-full text-base hover:scale-105 transition"
+                    ? "px-4 py-1.5 border-2 border-blue-200 text-blue-600 dark:border-primary dark:text-primary font-semibold rounded-full text-base bg-blue-50 dark:bg-background hover:scale-105 transition"
+                    : "px-4 py-1.5 bg-blue-100 text-blue-700 dark:bg-card dark:text-foreground font-semibold rounded-full text-base hover:scale-105 transition"
                 }
               >
                 {chip.label}
@@ -54,8 +54,8 @@ export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
             ))}
           </div>
           {/* Fade effect for mobile scroll */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-white/90 to-transparent sm:hidden" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-white/90 to-transparent sm:hidden" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-white/90 to-transparent dark:from-background/90 sm:hidden" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-white/90 to-transparent dark:from-background/90 sm:hidden" />
         </div>
       ))}
       <style jsx>{`

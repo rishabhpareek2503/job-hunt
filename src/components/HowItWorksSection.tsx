@@ -57,11 +57,11 @@ const steps = [
 ];
 
 const HowItWorksSection = forwardRef<HTMLDivElement>((props, ref) => (
-  <section ref={ref} className="relative w-full flex flex-col items-center py-14 px-4 bg-gradient-to-b from-blue-50/70 to-white overflow-x-hidden">
-    <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3">
-      Get Hired in <span className="text-blue-600">4 Quick Easy Steps</span>
+  <section ref={ref} className="relative w-full flex flex-col items-center py-14 px-4 bg-gradient-to-b from-blue-50/70 to-white dark:from-background/90 dark:to-background overflow-x-hidden">
+    <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-foreground text-center mb-3">
+      Get Hired in <span className="text-blue-600 dark:text-primary">4 Quick Easy Steps</span>
     </h2>
-    <p className="text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
+    <p className="text-base md:text-lg text-gray-500 dark:text-muted-foreground text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
       The quickest and most effective way to get hired by the top firm working in your career interest areas.
     </p>
     <div className="relative w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0" style={{minHeight:'220px'}}>
@@ -88,20 +88,20 @@ const HowItWorksSection = forwardRef<HTMLDivElement>((props, ref) => (
         return (
           <div
             key={step.title}
-            className={`group relative flex flex-col items-center text-center bg-gradient-to-b from-white via-white to-white rounded-full shadow-xl px-6 py-8 w-52 h-52 transition-transform duration-300 hover:-translate-y-3 hover:shadow-2xl animate-fadein z-10`}
+            className={`group relative flex flex-col items-center text-center bg-white dark:bg-card text-gray-900 dark:text-foreground rounded-full shadow-xl px-6 py-8 w-52 h-52 transition-transform duration-300 hover:-translate-y-3 hover:shadow-2xl animate-fadein z-10 border border-gray-200 dark:border-border backdrop-blur-md`}
             style={{ animationDelay: animDelay }}
           >
           {/* Floating step badge */}
-          <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-white text-blue-600 font-bold rounded-full px-4 py-2 text-xs shadow-lg flex items-center gap-1 animate-badge-float">
+          <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-blue-50 dark:bg-card text-blue-600 dark:text-primary font-bold rounded-full px-4 py-2 text-xs shadow-lg flex items-center gap-1 animate-badge-float border border-blue-200 dark:border-border">
             <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" fill="none"/></svg>
             Step {idx + 1}
           </span>
           <div className="mb-2 flex items-center justify-center">
-            <div className="bg-white rounded-full shadow p-4 flex items-center justify-center animate-pop">
+            <div className="bg-white dark:bg-background rounded-full shadow p-4 flex items-center justify-center animate-pop border border-gray-200 dark:border-border">
               {step.icon}
             </div>
           </div>
-          <div className="text-lg font-extrabold mb-1 text-gray-900 animate-fadein-delay" style={{ animationDelay: animDelay }}>{step.title}</div>
+          <div className="text-lg font-extrabold mb-1 text-gray-900 dark:text-foreground animate-fadein-delay" style={{ animationDelay: animDelay }}>{step.title}</div>
         </div>
         );
       })}
@@ -110,9 +110,9 @@ const HowItWorksSection = forwardRef<HTMLDivElement>((props, ref) => (
     <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 mt-2">
       {steps.map((step, idx) => (
         <div key={idx} className={`w-56 flex flex-col items-center`}>
-          <div className={`relative flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl bg-white/60 backdrop-blur-md border-l-8`} style={{ borderColor: step.accentColor, boxShadow: `0 4px 24px 0 ${step.accentColor}22` }}>
-            <span className={`absolute -left-6 -top-4 bg-white shadow-lg rounded-full p-2 border-4`} style={{ borderColor: step.accentColor }}>{step.accentIcon}</span>
-            <span className="text-lg font-semibold" style={{ color: step.accentColor, lineHeight: 1.4 }}>{step.desc}</span>
+          <div className={`relative flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl bg-white dark:bg-card text-gray-900 dark:text-foreground backdrop-blur-md border-l-8 border border-gray-200 dark:border-border`} style={{ borderColor: step.accentColor, boxShadow: `0 4px 24px 0 ${step.accentColor}22` }}>
+            <span className={`absolute -left-6 -top-4 bg-blue-50 dark:bg-background shadow-lg rounded-full p-2 border-4 border-blue-200 dark:border-border`} style={{ borderColor: step.accentColor }}>{step.accentIcon}</span>
+            <span className="text-lg font-semibold text-gray-700 dark:text-muted-foreground" style={{ color: step.accentColor, lineHeight: 1.4 }}>{step.desc}</span>
           </div>
         </div>
       ))}

@@ -42,7 +42,7 @@ export default function HomePage() {
     { name: "Twitter", logoUrl: "https://img.logo.dev/twitter.com?token=pk_GXHi5vUDRwm1xphnJaliqA" },
   ];
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       <div className="fixed top-0 right-0 z-50 gap-4 p-6 hidden md:flex">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>

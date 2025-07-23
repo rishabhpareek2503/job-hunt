@@ -35,7 +35,7 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
     [companies.length]
   );
   return (
-    <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-white to-blue-50 overflow-x-hidden">
+    <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-white to-blue-50 dark:from-background/90 dark:to-background overflow-x-hidden">
       {/* Animated background shape */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,11 +48,11 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
           <rect width="1440" height="320" fill="url(#companyBg)" />
         </svg>
       </div>
-      <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3 flex items-center justify-center gap-2">
-        <FaBuilding className="text-blue-500 w-5 h-5" />
-        <span className="text-black">Top Companies</span> <span className="text-blue-600">Hiring Now</span>
+      <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-foreground text-center mb-3 flex items-center justify-center gap-2">
+        <FaBuilding className="text-blue-500 dark:text-primary w-5 h-5" />
+        <span className="text-gray-900 dark:text-foreground">Top Companies</span> <span className="text-blue-600 dark:text-primary">Hiring Now</span>
       </h2>
-      <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
+      <p className="text-sm sm:text-base md:text-lg text-gray-500 dark:text-muted-foreground text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
         Get hired by the world’s best. Explore opportunities at these leading organizations.
       </p>
       <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-6 place-items-center mb-8 md:mb-4">
@@ -61,13 +61,11 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
           return (
             <div
               key={company.name}
-              className="group flex flex-col items-center justify-center p-4 bg-white/60 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer animate-company-float"
+              className="group flex flex-col items-center justify-center p-4 bg-white dark:bg-card text-gray-900 dark:text-foreground backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl border border-gray-200 dark:border-border transition-all duration-300 cursor-pointer animate-company-float"
               style={{
                 animationDelay: `${delays[idx]}s`,
                 marginTop: rowOffsets[idx % rowOffsets.length],
                 marginBottom: rowOffsets[(rowOffsets.length - idx) % rowOffsets.length],
-                boxShadow: '0 6px 32px 0 #60a5fa22',
-                border: `1.5px solid #e0e7ef`,
                 outline: 'none',
               }}
               aria-label={`View jobs at ${company.name}`}
@@ -101,7 +99,7 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
                   style={{ background: color }}
                 ></span>
               </div>
-              <span className="text-base font-bold text-gray-800 text-center mt-2 group-hover:text-blue-700 transition-all duration-300">
+              <span className="text-base font-bold text-blue-700 dark:text-primary text-center mt-2 group-hover:text-blue-600 dark:group-hover:text-primary/80 transition-all duration-300">
                 {company.name}
               </span>
             </div>

@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground`}>
         <div className="flex min-h-screen">
           {showLeftBar && <LeftBar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />}
           {showLeftBar && !mobileMenuOpen && (

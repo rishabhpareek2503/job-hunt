@@ -26,11 +26,11 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
   }, [showMobileFilter]);
 
   return (
-    <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
+    <div className="min-h-screen h-screen w-full flex flex-col bg-background text-foreground p-4">
       <div className="flex-1 flex flex-col lg:flex-row gap-6 mt-0 min-h-0">
         <main className="flex-1 flex flex-col overflow-hidden min-h-0">
           {isMobile && (
-            <div className="sticky top-0 z-30 w-full flex justify-end bg-[#e9ecef] pt-2 pb-2">
+            <div className="sticky top-0 z-30 w-full flex justify-end bg-background pt-2 pb-2">
               <button
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-base"
                 onClick={() => setShowMobileFilter(true)}
@@ -40,20 +40,20 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
               </button>
             </div>
           )}
-          <div className="h-full min-h-0 flex-1 overflow-y-auto rounded-3xl bg-[#e9ecef] scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="h-full min-h-0 flex-1 overflow-y-auto rounded-3xl bg-background scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <CenterContent filters={filters} setFilters={setFilters} />
           </div>
         </main>
         {!isMobile && (
           <aside className="w-full lg:w-[380px] shrink-0 h-full min-h-0">
-            <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-white shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-background shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               <FilterBar filters={filters} setFilters={setFilters} />
             </div>
           </aside>
         )}
         {isMobile && showMobileFilter && (
           <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40">
-            <div className="relative w-full max-w-md mx-auto bg-white rounded-t-3xl shadow-lg flex flex-col h-[90vh] mt-8">
+            <div className="relative w-full max-w-md mx-auto bg-background rounded-t-3xl shadow-lg flex flex-col h-[90vh] mt-8">
               <button
                 className="absolute top-3 right-3 text-gray-400 hover:text-blue-600 text-2xl font-bold"
                 onClick={() => setShowMobileFilter(false)}
@@ -64,7 +64,7 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
               <div className="flex-1 min-h-0 overflow-y-auto px-2 pb-4">
                 <FilterBar filters={pendingFilters} setFilters={setPendingFilters} />
               </div>
-              <div className="w-full px-2 pb-4 bg-white">
+              <div className="w-full px-2 pb-4 bg-background">
                 <button
                   className="w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transition text-lg"
                   onClick={() => { setFilters(cloneDeep(pendingFilters)); setShowMobileFilter(false); }}

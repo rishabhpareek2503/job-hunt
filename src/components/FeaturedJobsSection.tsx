@@ -90,7 +90,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
   };
 
   return (
-    <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-blue-50/60 to-white overflow-x-hidden">
+    <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-blue-50/60 to-white dark:from-background/90 dark:to-background overflow-x-hidden">
       {/* Animated background shape */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,20 +103,20 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
           <rect width="1440" height="320" fill="url(#featuredJobsBg)" />
         </svg>
       </div>
-      <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3 flex items-center justify-center gap-2">
+      <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-foreground text-center mb-3 flex items-center justify-center gap-2">
         <FaStar className="text-yellow-400 w-5 h-5" />
-        <span className="text-black">Featured</span> <span className="text-blue-600">Jobs</span>
+        <span className="text-gray-900 dark:text-foreground">Featured</span> <span className="text-blue-600 dark:text-primary">Jobs</span>
       </h2>
-      <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
+      <p className="text-base md:text-lg text-gray-500 dark:text-muted-foreground text-center max-w-2xl mb-8">
         Explore top opportunities handpicked for you. Apply now to get ahead in your career!
       </p>
       {/* Search Bar */}
       <div className="w-full max-w-4xl mx-auto mb-10">
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:bg-white/80 sm:backdrop-blur-md sm:rounded-2xl sm:shadow-lg sm:p-6 sm:border sm:border-blue-100 relative z-40">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:bg-white dark:sm:bg-card sm:backdrop-blur-md sm:rounded-2xl sm:shadow-lg sm:p-6 sm:border sm:border-gray-200 dark:sm:border-border relative z-40 transition-all">
           {/* Title Field */}
           <div className="relative flex-1 min-w-[120px]" ref={titleRef}>
             <input
-              className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+              className="w-full pl-10 pr-3 py-2 bg-white dark:bg-background border-2 border-gray-100 dark:border-border rounded-xl text-sm focus:ring-4 focus:ring-blue-50 dark:focus:ring-primary/20 focus:border-blue-400 dark:focus:border-primary hover:border-blue-200 dark:hover:border-muted transition-all duration-300 shadow-sm placeholder:text-gray-400 dark:placeholder:text-muted-foreground"
               type="text"
               placeholder="Job Title"
               value={selectedTitle || titleInput}
@@ -124,7 +124,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
               onFocus={() => setShowTitleDropdown(true)}
               readOnly={!!selectedTitle}
             />
-            <FaBriefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <FaBriefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-muted-foreground w-5 h-5" />
             {selectedTitle && (
               <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedTitle(""); setTitleInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
             )}
@@ -145,7 +145,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
           {/* Location Field */}
           <div className="relative flex-1 min-w-[120px]" ref={locationRef}>
             <input
-              className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+              className="w-full pl-10 pr-3 py-2 bg-white dark:bg-background border-2 border-gray-100 dark:border-border rounded-xl text-sm focus:ring-4 focus:ring-blue-50 dark:focus:ring-primary/20 focus:border-blue-400 dark:focus:border-primary hover:border-blue-200 dark:hover:border-muted transition-all duration-300 shadow-sm placeholder:text-gray-400 dark:placeholder:text-muted-foreground"
               type="text"
               placeholder="Location"
               value={selectedLocation || locationInput}
@@ -174,7 +174,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
           {/* Company Field */}
           <div className="relative flex-1 min-w-[120px]" ref={companyRef}>
             <input
-              className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+              className="w-full pl-10 pr-3 py-2 bg-white dark:bg-background border-2 border-gray-100 dark:border-border rounded-xl text-sm focus:ring-4 focus:ring-blue-50 dark:focus:ring-primary/20 focus:border-blue-400 dark:focus:border-primary hover:border-blue-200 dark:hover:border-muted transition-all duration-300 shadow-sm placeholder:text-gray-400 dark:placeholder:text-muted-foreground"
               type="text"
               placeholder="Company"
               value={selectedCompany || companyInput}
@@ -228,10 +228,8 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
             return (
               <div
                 key={job.id}
-                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein mx-auto md:mx-0 ${mobileHide}`}
+                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white dark:bg-card text-gray-900 dark:text-foreground backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl border border-gray-200 dark:border-border transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein mx-auto md:mx-0 ${mobileHide}`}
                 style={{
-                  border: `1.5px solid #e0e7ef`,
-                  boxShadow: `0 6px 32px 0 #60a5fa22, inset 0 1.5px 8px 0 #e0e7ef`,
                   outline: 'none',
                   animationDelay: '0s',
                 }}
@@ -239,19 +237,19 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
                 aria-label={`View job: ${job.title} at ${job.company}`}
               >
                 {/* Featured badge */}
-                <span className="absolute -top-3 left-4 z-10 px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-xs font-bold rounded-full shadow-lg tracking-wide animate-badge-pop">
+                <span className="absolute -top-3 left-4 z-10 px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-700 text-white dark:from-primary dark:to-primary/80 dark:text-primary-foreground text-xs font-bold rounded-full shadow-lg tracking-wide animate-badge-pop">
                   Featured
                 </span>
                 <div className="flex items-center gap-3 mb-3">
-                  <Image src={job.company_logo} alt={job.company} width={48} height={48} className="w-12 h-12 object-contain rounded-xl bg-white shadow group-hover:scale-110 transition-all duration-300" />
+                  <Image src={job.company_logo} alt={job.company} width={48} height={48} className="w-12 h-12 object-contain rounded-xl bg-white dark:bg-background shadow group-hover:scale-110 transition-all duration-300" />
                   <div className="flex flex-col">
-                    <span className="text-base font-bold text-gray-900 group-hover:text-blue-700 transition-all duration-300">{job.title}</span>
-                    <span className="text-sm text-gray-500">{job.company}</span>
+                    <span className="text-base font-bold text-blue-700 dark:text-primary group-hover:text-blue-600 dark:group-hover:text-primary/80 transition-all duration-300">{job.title}</span>
+                    <span className="text-sm text-gray-700 dark:text-muted-foreground">{job.company}</span>
                   </div>
                 </div>
-                <div className="text-sm text-gray-600 mb-2 truncate w-full">{job.location} • {job.job_type} • {job.work_mode}</div>
-                <div className="text-sm text-blue-600 font-semibold mb-4">{job.salary}</div>
-                <div className="flex-1 text-xs text-gray-500 mb-4 line-clamp-2">{job.description}</div>
+                <div className="text-sm text-gray-500 dark:text-muted-foreground mb-2 truncate w-full">{job.location} • {job.job_type} • {job.work_mode}</div>
+                <div className="text-sm text-blue-600 dark:text-primary font-semibold mb-4">{job.salary}</div>
+                <div className="flex-1 text-xs text-gray-500 dark:text-muted-foreground mb-4 line-clamp-2">{job.description}</div>
                 <button
                   className="mt-auto px-4 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:scale-105 transition text-xs flex items-center gap-2 group/button"
                   style={{ background: color }}
