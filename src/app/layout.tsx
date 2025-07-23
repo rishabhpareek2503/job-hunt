@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex min-h-screen">
-          {showLeftBar && <LeftBar />}
-          {/* Mobile menu button (top right) */}
-          {showLeftBar && (
+          {showLeftBar && <LeftBar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />}
+          {/* Mobile menu button (top left) - only show when drawer is closed */}
+          {showLeftBar && !mobileMenuOpen && (
             <MobileMenuButton onClick={() => setMobileMenuOpen(true)} />
           )}
           <main className={`flex-1 ${showLeftBar ? 'md:ml-20' : ''}`}>{children}</main>
