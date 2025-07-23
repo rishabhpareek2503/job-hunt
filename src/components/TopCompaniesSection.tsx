@@ -29,10 +29,10 @@ const brandColors: Record<string, string> = {
 };
 
 export default function TopCompaniesSection({ companies }: { companies: Company[] }) {
-  // Randomize animation delays for organic feel
+  // Use a fixed, deterministic array of delays for hydration safety
   const delays = React.useMemo(() =>
-    companies.map(() => (Math.random() * 1.5 + 0.1).toFixed(2)),
-    [companies]
+    companies.map((_, idx) => (0.2 + (idx % 6) * 0.13).toFixed(2)),
+    [companies.length]
   );
   return (
     <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-white to-blue-50 overflow-x-hidden">
