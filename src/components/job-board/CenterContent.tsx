@@ -15,8 +15,7 @@ interface CenterContentProps {
 
 export default function CenterContent({ filters, setFilters }: CenterContentProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [sortOption, setSortOption] = useState("Recommended");
-  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  // Removed sortOption and showSortDropdown
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -65,27 +64,6 @@ export default function CenterContent({ filters, setFilters }: CenterContentProp
               <Filter size={16} />
               <span>Filters</span>
             </button>
-          </div>
-
-          <div className="relative">
-            <button
-              onClick={() => setShowSortDropdown(!showSortDropdown)}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-full font-medium text-gray-700 hover:bg-gray-100 transition-all shadow-sm text-sm"
-            >
-              <span>{sortOption}</span>
-              <ChevronDown size={16} className={`transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
-            </button>
-            {showSortDropdown && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border border-gray-100">
-                {['Recommended', 'Most Recent'].map(option => (
-                  <div key={option} onClick={() => { setSortOption(option); setShowSortDropdown(false); }}
-                    className={`px-4 py-2 cursor-pointer hover:bg-gray-50 ${sortOption === option ? 'font-semibold text-blue-600' : ''}`}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>

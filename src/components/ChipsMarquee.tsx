@@ -12,7 +12,7 @@ function splitChips<T>(chipsArr: T[], numRows: number): T[][] {
 export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
   const chipRows = splitChips(chips, 3);
   return (
-    <div className="w-full max-w-xs sm:max-w-2xl mx-auto flex flex-col gap-2 items-center mt-8 mb-2">
+    <div className="w-full max-w-xs sm:max-w-2xl lg:max-w-7xl xl:max-w-none mx-auto flex flex-col gap-2 items-center mt-8 mb-2">
       {chipRows.map((row, rowIdx) => (
         <div
           key={"row-" + rowIdx}
