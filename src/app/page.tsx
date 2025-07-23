@@ -43,12 +43,10 @@ export default function HomePage() {
   ];
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* Floating Login/Signup Buttons (desktop only) */}
       <div className="fixed top-0 right-0 z-50 gap-4 p-6 hidden md:flex">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
       </div>
-      {/* Hero Section with ChipsMarquee as children */}
       <HeroSection
         onHowItWorksClick={() => {
           if (howItWorksRef.current) {
@@ -59,16 +57,12 @@ export default function HomePage() {
       >
         <ChipsMarquee chips={chips} />
       </HeroSection>
-      {/* Login/Register Buttons (mobile only, below hero) */}
       <div className="flex md:hidden justify-center gap-4 mt-4 px-4">
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
         </div>
-      {/* Featured Jobs Section */}
       <FeaturedJobsSection onViewAll={() => router.push('/jobs')} />
-      {/* How It Works Section */}
       <HowItWorksSection ref={howItWorksRef} />
-      {/* Top Companies Section */}
       <TopCompaniesSection companies={companies} />
       <Footer />
     </div>

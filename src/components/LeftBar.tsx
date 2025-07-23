@@ -41,7 +41,7 @@ export default function LeftBar({ isOpen = false, onClose }: { isOpen?: boolean;
           <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center mb-2 border-4 border-blue-100 animate-pulse">
             <Image src="/logo.png" alt="Logo" width={56} height={56} className="rounded-2xl" priority />
           </div>
-          <span className="text-xl font-black text-blue-700 tracking-tight mb-2">JobHunt</span>
+          <span className="text-xl font-black text-blue-700 tracking-tight mb-2">Hirinex</span>
           <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-600 text-3xl font-black bg-white/80 rounded-full shadow-lg p-2 border border-blue-100 transition-all duration-200 focus:outline-none" onClick={onClose} aria-label="Close menu">&times;</button>
         </div>
         <ul className="flex flex-col gap-2 w-full px-4">

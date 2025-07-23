@@ -27,7 +27,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
         <div className="flex min-h-screen">
           {showLeftBar && <LeftBar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />}
-          {/* Mobile menu button (top left) - only show when drawer is closed */}
           {showLeftBar && !mobileMenuOpen && (
             <MobileMenuButton onClick={() => setMobileMenuOpen(true)} />
           )}

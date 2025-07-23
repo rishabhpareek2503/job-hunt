@@ -15,7 +15,6 @@ interface CenterContentProps {
 
 export default function CenterContent({ filters, setFilters }: CenterContentProps) {
   const [isLoading, setIsLoading] = useState(true);
-  // Removed sortOption and showSortDropdown
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);

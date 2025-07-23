@@ -14,14 +14,13 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
 
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      setIsMobile(window.innerWidth < 1024); 
     }
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // When opening the modal, copy current filters to pendingFilters
   useEffect(() => {
     if (showMobileFilter) setPendingFilters(cloneDeep(filters));
   }, [showMobileFilter]);
@@ -30,7 +29,6 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
     <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
       <div className="flex-1 flex flex-col lg:flex-row gap-6 mt-0 min-h-0">
         <main className="flex-1 flex flex-col overflow-hidden min-h-0">
-          {/* Mobile Filter Button */}
           {isMobile && (
             <div className="sticky top-0 z-30 w-full flex justify-end bg-[#e9ecef] pt-2 pb-2">
               <button
@@ -46,7 +44,6 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
             <CenterContent filters={filters} setFilters={setFilters} />
           </div>
         </main>
-        {/* Desktop Sidebar */}
         {!isMobile && (
           <aside className="w-full lg:w-[380px] shrink-0 h-full min-h-0">
             <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-white shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
@@ -54,7 +51,6 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
             </div>
           </aside>
         )}
-        {/* Mobile Filter Modal */}
         {isMobile && showMobileFilter && (
           <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40">
             <div className="relative w-full max-w-md mx-auto bg-white rounded-t-3xl shadow-lg flex flex-col h-[90vh] mt-8">
