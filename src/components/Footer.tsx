@@ -43,7 +43,7 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white/90 border-t border-blue-100 shadow-inner pt-8 pb-4 px-2 sm:px-4 mt-12">
+    <footer className="w-full bg-white/90 border-t border-blue-100 pt-8 pb-4 px-2 sm:px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-6 items-start">
         {/* Logo and description */}
         <div className="md:col-span-2 flex flex-col items-center md:items-start mb-6 md:mb-0">

@@ -72,10 +72,12 @@ export default function HomePage() {
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Login</button>
         <button className="px-6 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition border-2 border-blue-700">Register</button>
       </div>
+      {/* Featured Jobs Section */}
+      <FeaturedJobsSection onViewAll={() => router.push('/jobs')} />
       {/* How It Works Section */}
       <HowItWorksSection ref={howItWorksRef} />
+      {/* Top Companies Section */}
       <TopCompaniesSection companies={companies} />
-      <FeaturedJobsSection onViewAll={() => router.push('/jobs')} />
       <Footer />
     </div>
   );
