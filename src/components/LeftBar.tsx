@@ -14,10 +14,18 @@ const navItems = [
   { href: "/contact", label: "Contact", icon: (<svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v4.5M21 10.5a2.5 2.5 0 01-5 0M21 10.5V18a2 2 0 01-2 2H5a2 2 0 01-2-2v-7.5M3 10.5a2.5 2.5 0 005 0" /></svg>) },
 ];
 
+export function MobileMenuButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button className="fixed top-4 left-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-lg border border-blue-100 md:hidden" onClick={onClick} aria-label="Open menu">
+      <FaBars className="w-6 h-6 text-blue-600" />
+    </button>
+  );
+}
+
 export default function LeftBar() {
   const pathname = usePathname();
   return (
-    <nav className="fixed top-0 left-0 h-screen w-20 bg-white border-r border-gray-200 flex flex-col items-center py-8 shadow-sm z-50">
+    <nav className="fixed top-0 left-0 h-screen w-20 bg-white border-r border-gray-200 flex flex-col items-center py-8 shadow-sm z-50 hidden md:flex">
       <div className="mb-10 flex justify-center w-full">
         <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
           <Image src="/logo.png" alt="Logo" width={40} height={40} className="rounded-full" priority />

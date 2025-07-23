@@ -4,7 +4,8 @@ import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import LeftBar from "../components/LeftBar";
+import LeftBar, { MobileMenuButton } from "../components/LeftBar";
+import { useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,13 +20,17 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const showLeftBar = pathname !== "/login";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex min-h-screen">
           {showLeftBar && <LeftBar />}
-          <main className={`flex-1 ${showLeftBar ? 'ml-20' : ''}`}>{children}</main>
-
+          {/* Mobile menu button (top right) */}
+          {showLeftBar && (
+            <MobileMenuButton onClick={() => setMobileMenuOpen(true)} />
+          )}
+          <main className={`flex-1 ${showLeftBar ? 'md:ml-20' : ''}`}>{children}</main>
         </div>
       </body>
     </html>
