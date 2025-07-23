@@ -6,11 +6,11 @@ export default function AboutPage() {
     <section className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-b from-blue-50/60 to-white px-4 pt-10 pb-16">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center">
         <div className="mb-6">
-          <Image src="/logo.png" alt="JobHunt Logo" width={72} height={72} className="rounded-full mx-auto shadow-lg" />
+          <Image src="/logo.png" alt="Hirinex Logo" width={72} height={72} className="rounded-full mx-auto shadow-lg" />
         </div>
-        <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2">About <span className="text-black">JobHunt</span></h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2">About <span className="text-black">Hirinex</span></h1>
         <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-          JobHunt is your trusted partner in career success. We connect talented professionals with top companies, making the job search process seamless, transparent, and rewarding. Our mission is to empower you to find your dream job and help companies discover the best talent.
+        Hirinex is your trusted partner in career success. We connect talented professionals with top companies, making the job search process seamless, transparent, and rewarding. Our mission is to empower you to find your dream job and help companies discover the best talent.
         </p>
         <div className="flex flex-col md:flex-row gap-8 w-full mb-10">
           <div className="flex-1 bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
@@ -42,7 +42,7 @@ export default function AboutPage() {
         </div>
         <div className="w-full max-w-2xl mx-auto bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl shadow-lg p-8 flex flex-col items-center mt-8">
           <h2 className="text-2xl font-bold text-white mb-2">Join Us On Our Journey!</h2>
-          <p className="text-white text-base mb-4">Whether you&apos;re a job seeker or a company looking for talent, JobHunt is here to help you succeed. Explore our platform, connect with our team, and take the next step in your journey today.</p>
+          <p className="text-white text-base mb-4">Whether you&apos;re a job seeker or a company looking for talent, Hirinex is here to help you succeed. Explore our platform, connect with our team, and take the next step in your journey today.</p>
           <a href="/jobs" className="px-6 py-3 bg-white text-blue-700 font-bold rounded-full shadow hover:bg-blue-100 transition text-lg">Browse Jobs</a>
         </div>
       </div>

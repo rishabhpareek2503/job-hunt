@@ -51,7 +51,7 @@ export default function Footer() {
             <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
               <Image src="/logo.png" alt="Logo" width={32} height={32} className="rounded-full" />
             </div>
-            <span className="font-bold text-base text-blue-700 tracking-tight">JobHunt</span>
+            <span className="font-bold text-base text-blue-700 tracking-tight">Hirinex</span>
           </div>
           <p className="text-xs text-gray-500 max-w-xs text-center md:text-left">
             The #1 platform to search, apply, and get hired by top companies. Your dream job is just a click away!
@@ -70,7 +70,7 @@ export default function Footer() {
         ))}
       </div>
       <div className="mt-6 text-center text-xs text-gray-400">
-        &copy; {new Date().getFullYear()} JobHunt. All rights reserved.
+        &copy; {new Date().getFullYear()} Hirinex. All rights reserved.
       </div>
     </footer>
   );

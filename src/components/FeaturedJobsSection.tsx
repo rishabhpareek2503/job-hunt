@@ -3,7 +3,8 @@ import React, { useState, useLayoutEffect, useEffect } from "react";
 import { dummyJobs } from "../lib/dummy-jobs";
 import { FaArrowRight, FaArrowLeft, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { IoSearchOutline, IoCloseOutline, IoArrowForward } from "react-icons/io5";
+import { IoCloseOutline, IoArrowForward, IoLocationOutline } from "react-icons/io5";
+import { FaBriefcase, FaBuilding } from "react-icons/fa";
 import Image from "next/image";
 
 const brandColors: Record<string, string> = {
@@ -123,7 +124,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
               onFocus={() => setShowTitleDropdown(true)}
               readOnly={!!selectedTitle}
             />
-            <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <FaBriefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             {selectedTitle && (
               <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedTitle(""); setTitleInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
             )}
@@ -152,7 +153,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
               onFocus={() => setShowLocationDropdown(true)}
               readOnly={!!selectedLocation}
             />
-            <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <IoLocationOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             {selectedLocation && (
               <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedLocation(""); setLocationInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
             )}
@@ -181,7 +182,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
               onFocus={() => setShowCompanyDropdown(true)}
               readOnly={!!selectedCompany}
             />
-            <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <FaBuilding className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             {selectedCompany && (
               <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedCompany(""); setCompanyInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
             )}
