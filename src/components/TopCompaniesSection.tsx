@@ -51,10 +51,10 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
         <FaBuilding className="text-blue-500 w-5 h-5" />
         <span className="text-black">Top Companies</span> <span className="text-blue-600">Hiring Now</span>
       </h2>
-      <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
+      <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
         Get hired by the world’s best. Explore opportunities at these leading organizations.
       </p>
-      <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 place-items-center mb-8">
+      <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-6 place-items-center mb-8">
         {companies.map((company, idx) => {
           const color = brandColors[company.name] || "#2563eb";
           return (

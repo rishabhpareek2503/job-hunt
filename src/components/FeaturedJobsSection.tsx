@@ -18,20 +18,29 @@ const brandColors: Record<string, string> = {
   Twitter: "#000000",
 };
 
-const CARDS_TO_SHOW = 3;
+const getCardsToShow = () => (typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3);
 
 export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => void }) {
   const jobs = dummyJobs;
+  const [cardsToShow, setCardsToShow] = useState(getCardsToShow());
   const [current, setCurrent] = useState(0);
   useEffect(() => {
+    function handleResize() {
+      setCardsToShow(getCardsToShow());
+    }
+    window.addEventListener('resize', handleResize);
+    setCardsToShow(getCardsToShow());
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + CARDS_TO_SHOW) % jobs.length);
+      setCurrent((prev) => (prev + cardsToShow) % jobs.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, [jobs.length]);
+  }, [jobs.length, cardsToShow]);
   const goTo = (idx: number) => setCurrent((idx + jobs.length) % jobs.length);
-  // Get the 3 jobs to show, looping if needed
-  const visibleJobs = Array.from({ length: CARDS_TO_SHOW }, (_, i) => jobs[(current + i) % jobs.length]);
+  // Get the jobs to show, looping if needed
+  const visibleJobs = Array.from({ length: cardsToShow }, (_, i) => jobs[(current + i) % jobs.length]);
   return (
     <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-blue-50/60 to-white overflow-x-hidden">
       {/* Animated background shape */}
@@ -57,19 +66,19 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
         <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
           <button
             className="p-2 bg-white/80 rounded-full shadow hover:bg-blue-100 transition"
-            onClick={() => goTo(current - CARDS_TO_SHOW)}
+            onClick={() => goTo(current - cardsToShow)}
             aria-label="Previous jobs"
           >
             <FaArrowLeft className="w-5 h-5 text-blue-600" />
           </button>
         </div>
-        <div className="flex-1 flex flex-row gap-6 justify-center">
+        <div className={`flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
           {visibleJobs.map((job, idx) => {
             const color = brandColors[job.company] || "#2563eb";
             return (
               <div
                 key={job.id}
-                className="group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein"
+                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein ${cardsToShow === 1 ? 'mx-auto' : ''}`}
                 style={{
                   border: `1.5px solid #e0e7ef`,
                   boxShadow: `0 6px 32px 0 #60a5fa22, inset 0 1.5px 8px 0 #e0e7ef`,
@@ -108,7 +117,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
         <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
           <button
             className="p-2 bg-white/80 rounded-full shadow hover:bg-blue-100 transition"
-            onClick={() => goTo(current + CARDS_TO_SHOW)}
+            onClick={() => goTo(current + cardsToShow)}
             aria-label="Next jobs"
           >
             <FaArrowRight className="w-5 h-5 text-blue-600" />

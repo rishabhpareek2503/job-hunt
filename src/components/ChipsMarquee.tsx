@@ -12,11 +12,11 @@ function splitChips<T>(chipsArr: T[], numRows: number): T[][] {
 export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
   const chipRows = splitChips(chips, 3);
   return (
-    <div className="w-full flex flex-col gap-2 items-center mt-8 mb-2">
+    <div className="w-full max-w-xs sm:max-w-2xl mx-auto flex flex-col gap-2 items-center mt-8 mb-2">
       {chipRows.map((row, rowIdx) => (
         <div
           key={"row-" + rowIdx}
-          className="relative w-full overflow-x-hidden flex"
+          className="relative w-full flex overflow-x-hidden sm:overflow-x-hidden overflow-x-auto px-2 sm:px-0"
           style={{ height: '44px' }}
         >
           <div
@@ -53,6 +53,9 @@ export default function ChipsMarquee({ chips }: { chips: Chip[] }) {
               </span>
             ))}
           </div>
+          {/* Fade effect for mobile scroll */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-white/90 to-transparent sm:hidden" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-white/90 to-transparent sm:hidden" />
         </div>
       ))}
       <style jsx>{`

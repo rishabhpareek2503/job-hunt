@@ -61,7 +61,7 @@ const HowItWorksSection = forwardRef<HTMLDivElement>((props, ref) => (
     <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3">
       Get Hired in <span className="text-blue-600">4 Quick Easy Steps</span>
     </h2>
-    <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
+    <p className="text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
       The quickest and most effective way to get hired by the top firm working in your career interest areas.
     </p>
     <div className="relative w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0" style={{minHeight:'220px'}}>
