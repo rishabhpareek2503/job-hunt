@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import { dummyJobs } from "../lib/dummy-jobs";
 import { FaArrowRight, FaArrowLeft, FaStar } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
   const jobs = dummyJobs;
   const [cardsToShow, setCardsToShow] = useState(3); // Always start with 3 for SSR
   const [current, setCurrent] = useState(0);
-  useEffect(() => {
+  useLayoutEffect(() => {
     function handleResize() {
       setCardsToShow(window.innerWidth < 768 ? 1 : 3);
     }
@@ -72,13 +72,15 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
             <FaArrowLeft className="w-5 h-5 text-blue-600" />
           </button>
         </div>
-        <div key={cardsToShow} className={`flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
+        <div key={cardsToShow} className={`w-full flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
           {visibleJobs.map((job, idx) => {
+            // Always render all cards, but hide extra ones on mobile with CSS
+            const mobileHide = cardsToShow === 1 && idx > 0 ? 'hidden md:block' : 'block';
             const color = brandColors[job.company] || "#2563eb";
             return (
               <div
                 key={job.id}
-                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein ${cardsToShow === 1 ? 'mx-auto' : ''}`}
+                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein ${cardsToShow === 1 ? 'mx-auto' : ''} ${mobileHide}`}
                 style={{
                   border: `1.5px solid #e0e7ef`,
                   boxShadow: `0 6px 32px 0 #60a5fa22, inset 0 1.5px 8px 0 #e0e7ef`,
