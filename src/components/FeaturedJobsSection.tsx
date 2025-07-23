@@ -2,6 +2,8 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
 import { dummyJobs } from "../lib/dummy-jobs";
 import { FaArrowRight, FaArrowLeft, FaStar } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { IoSearchOutline, IoChevronDownOutline, IoCloseOutline, IoArrowForward } from "react-icons/io5";
 
 const brandColors: Record<string, string> = {
   Google: "#4285F4",
@@ -41,6 +43,52 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
   const goTo = (idx: number) => setCurrent((idx + jobs.length) % jobs.length);
   // Get the jobs to show, looping if needed
   const visibleJobs = Array.from({ length: cardsToShow }, (_, i) => jobs[(current + i) % jobs.length]);
+
+  const router = useRouter();
+  // Search bar state
+  const [titleInput, setTitleInput] = useState("");
+  const [locationInput, setLocationInput] = useState("");
+  const [companyInput, setCompanyInput] = useState("");
+  const [showTitleDropdown, setShowTitleDropdown] = useState(false);
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [showCompanyDropdown, setShowCompanyDropdown] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
+  const titleRef = React.useRef<HTMLDivElement>(null);
+  const locationRef = React.useRef<HTMLDivElement>(null);
+  const companyRef = React.useRef<HTMLDivElement>(null);
+
+  // Extract unique values
+  const allTitles = Array.from(new Set(dummyJobs.map(job => job.title))).sort();
+  const allLocations = Array.from(new Set(dummyJobs.map(job => job.location))).sort();
+  const allCompanies = Array.from(new Set(dummyJobs.map(job => job.company))).sort();
+
+  // Dropdown filtering
+  const filteredTitles = allTitles.filter(title => title.toLowerCase().includes(titleInput.toLowerCase()));
+  const filteredLocations = allLocations.filter(loc => loc.toLowerCase().includes(locationInput.toLowerCase()));
+  const filteredCompanies = allCompanies.filter(comp => comp.toLowerCase().includes(companyInput.toLowerCase()));
+
+  // Click outside logic
+  React.useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (titleRef.current && !titleRef.current.contains(e.target as Node)) setShowTitleDropdown(false);
+      if (locationRef.current && !locationRef.current.contains(e.target as Node)) setShowLocationDropdown(false);
+      if (companyRef.current && !companyRef.current.contains(e.target as Node)) setShowCompanyDropdown(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  // Handle submit
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (selectedTitle) params.append("title", selectedTitle);
+    if (selectedLocation) params.append("location", selectedLocation);
+    if (selectedCompany) params.append("company", selectedCompany);
+    router.push(`/jobs?${params.toString()}`);
+  };
+
   return (
     <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-blue-50/60 to-white overflow-x-hidden">
       {/* Animated background shape */}
@@ -62,6 +110,104 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
       <p className="text-base md:text-lg text-gray-500 text-center max-w-2xl mb-8">
         Explore top opportunities handpicked for you. Apply now to get ahead in your career!
       </p>
+      {/* Search Bar */}
+      <div className="w-full max-w-4xl mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch mb-10">
+        {/* Title Field */}
+        <div className="relative flex-1 min-w-[120px]" ref={titleRef}>
+          <input
+            className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+            type="text"
+            placeholder="Job Title"
+            value={selectedTitle || titleInput}
+            onChange={e => { setTitleInput(e.target.value); setSelectedTitle(""); setShowTitleDropdown(true); }}
+            onFocus={() => setShowTitleDropdown(true)}
+            readOnly={!!selectedTitle}
+          />
+          <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          {selectedTitle && (
+            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedTitle(""); setTitleInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
+          )}
+          {showTitleDropdown && filteredTitles.length > 0 && !selectedTitle && (
+            <div className="absolute left-0 right-0 z-50 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+              {filteredTitles.map(option => (
+                <div
+                  key={option}
+                  className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 hover:text-blue-700 transition-colors duration-200"
+                  onClick={() => { setSelectedTitle(option); setTitleInput(""); setShowTitleDropdown(false); }}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Location Field */}
+        <div className="relative flex-1 min-w-[120px]" ref={locationRef}>
+          <input
+            className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+            type="text"
+            placeholder="Location"
+            value={selectedLocation || locationInput}
+            onChange={e => { setLocationInput(e.target.value); setSelectedLocation(""); setShowLocationDropdown(true); }}
+            onFocus={() => setShowLocationDropdown(true)}
+            readOnly={!!selectedLocation}
+          />
+          <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          {selectedLocation && (
+            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedLocation(""); setLocationInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
+          )}
+          {showLocationDropdown && filteredLocations.length > 0 && !selectedLocation && (
+            <div className="absolute left-0 right-0 z-50 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+              {filteredLocations.map(option => (
+                <div
+                  key={option}
+                  className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 hover:text-blue-700 transition-colors duration-200"
+                  onClick={() => { setSelectedLocation(option); setLocationInput(""); setShowLocationDropdown(false); }}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Company Field */}
+        <div className="relative flex-1 min-w-[120px]" ref={companyRef}>
+          <input
+            className="w-full pl-10 pr-3 py-2 bg-white border-2 border-gray-100 rounded-xl text-sm focus:ring-4 focus:ring-blue-50 focus:border-blue-400 hover:border-blue-200 transition-all duration-300 shadow-sm placeholder:text-gray-400"
+            type="text"
+            placeholder="Company"
+            value={selectedCompany || companyInput}
+            onChange={e => { setCompanyInput(e.target.value); setSelectedCompany(""); setShowCompanyDropdown(true); }}
+            onFocus={() => setShowCompanyDropdown(true)}
+            readOnly={!!selectedCompany}
+          />
+          <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          {selectedCompany && (
+            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600" onClick={() => { setSelectedCompany(""); setCompanyInput(""); }}><IoCloseOutline className="w-4 h-4" /></button>
+          )}
+          {showCompanyDropdown && filteredCompanies.length > 0 && !selectedCompany && (
+            <div className="absolute left-0 right-0 z-50 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+              {filteredCompanies.map(option => (
+                <div
+                  key={option}
+                  className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 hover:text-blue-700 transition-colors duration-200"
+                  onClick={() => { setSelectedCompany(option); setCompanyInput(""); setShowCompanyDropdown(false); }}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Arrow Button */}
+        <button
+          className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition text-lg mt-1 sm:mt-0"
+          onClick={handleSearch}
+          aria-label="Search"
+        >
+          <IoArrowForward className="w-6 h-6" />
+        </button>
+      </div>
       <div className="w-full max-w-4xl flex flex-row items-center justify-center mb-8 relative gap-6">
         <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
           <button
@@ -72,15 +218,15 @@ export default function FeaturedJobsSection({ onViewAll }: { onViewAll: () => vo
             <FaArrowLeft className="w-5 h-5 text-blue-600" />
           </button>
         </div>
-        <div key={cardsToShow} className={`w-full flex-1 flex ${cardsToShow === 1 ? 'flex-col items-center gap-0' : 'flex-row gap-6 justify-center'}`}>
+        <div key={cardsToShow} className={`w-full flex-1 flex flex-col md:flex-row items-center md:items-stretch ${cardsToShow === 1 ? 'gap-0' : 'gap-6 md:gap-6'} justify-center`}>
           {visibleJobs.map((job, idx) => {
             // Always render all cards, but hide extra ones on mobile with CSS
-            const mobileHide = cardsToShow === 1 && idx > 0 ? 'hidden md:block' : 'block';
+            const mobileHide = idx > 0 ? 'hidden md:block' : 'block';
             const color = brandColors[job.company] || "#2563eb";
             return (
               <div
                 key={job.id}
-                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein ${cardsToShow === 1 ? 'mx-auto' : ''} ${mobileHide}`}
+                className={`group relative flex flex-col items-start w-full max-w-xs p-5 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer animate-job-float animate-job-fadein mx-auto md:mx-0 ${mobileHide}`}
                 style={{
                   border: `1.5px solid #e0e7ef`,
                   boxShadow: `0 6px 32px 0 #60a5fa22, inset 0 1.5px 8px 0 #e0e7ef`,

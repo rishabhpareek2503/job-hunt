@@ -5,8 +5,8 @@ import CenterContent from "./CenterContent";
 import FilterBar from "./FilterBar";
 import { Filters } from "@/lib/types";
 
-export default function JobBoard() {
-  const [filters, setFilters] = useState<Filters>({});
+export default function JobBoard({ initialFilters = {} }: { initialFilters?: Filters }) {
+  const [filters, setFilters] = useState<Filters>(initialFilters);
 
   return (
     <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
