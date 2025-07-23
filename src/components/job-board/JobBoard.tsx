@@ -1,26 +1,67 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CenterContent from "./CenterContent";
 import FilterBar from "./FilterBar";
 import { Filters } from "@/lib/types";
 
 export default function JobBoard({ initialFilters = {} }: { initialFilters?: Filters }) {
   const [filters, setFilters] = useState<Filters>(initialFilters);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
       <div className="flex-1 flex flex-col lg:flex-row gap-6 mt-0 min-h-0">
         <main className="flex-1 flex flex-col overflow-hidden min-h-0">
+          {/* Mobile Filter Button */}
+          {isMobile && (
+            <div className="sticky top-0 z-30 w-full flex justify-end bg-[#e9ecef] pt-2 pb-2">
+              <button
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-base"
+                onClick={() => setShowMobileFilter(true)}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0013 13.414V19a1 1 0 01-1.447.894l-4-2A1 1 0 017 17v-3.586a1 1 0 00-.293-.707L3.293 6.707A1 1 0 013 6V4z" /></svg>
+                Filters
+              </button>
+            </div>
+          )}
           <div className="h-full min-h-0 flex-1 overflow-y-auto rounded-3xl bg-[#e9ecef] scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <CenterContent filters={filters} setFilters={setFilters} />
           </div>
         </main>
-        <aside className="w-full lg:w-[380px] shrink-0 h-full min-h-0">
-          <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-white shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <FilterBar filters={filters} setFilters={setFilters} />
+        {/* Desktop Sidebar */}
+        {!isMobile && (
+          <aside className="w-full lg:w-[380px] shrink-0 h-full min-h-0">
+            <div className="h-full min-h-0 overflow-y-auto rounded-2xl bg-white shadow-sm border border-gray-200 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <FilterBar filters={filters} setFilters={setFilters} />
+            </div>
+          </aside>
+        )}
+        {/* Mobile Filter Modal */}
+        {isMobile && showMobileFilter && (
+          <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40">
+            <div className="relative w-full max-w-md mx-auto bg-white rounded-2xl shadow-lg p-4 mt-8">
+              <button
+                className="absolute top-3 right-3 text-gray-400 hover:text-blue-600 text-2xl font-bold"
+                onClick={() => setShowMobileFilter(false)}
+                aria-label="Close filter"
+              >
+                &times;
+              </button>
+              <FilterBar filters={filters} setFilters={setFilters} />
+            </div>
           </div>
-        </aside>
+        )}
       </div>
       <style jsx global>{`
         .scrollbar-none::-webkit-scrollbar {

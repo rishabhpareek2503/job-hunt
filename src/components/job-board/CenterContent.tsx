@@ -62,7 +62,7 @@ export default function CenterContent({ filters, setFilters }: CenterContentProp
             )}
             <button className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full font-medium text-blue-600 hover:bg-gray-50 shadow-sm border border-blue-200 transition-all text-sm">
               <Filter size={16} />
-              <span>Filters</span>
+              <span>Applied Filters</span>
             </button>
           </div>
         </div>
