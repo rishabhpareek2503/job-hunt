@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Filters } from "@/lib/types";
 import { dummyJobs } from "@/lib/dummy-jobs";
 import { IoFilterOutline, IoRefreshOutline, IoChevronDownOutline, IoSearchOutline, IoCloseOutline } from "react-icons/io5";
@@ -50,14 +50,14 @@ export default function FilterBar({ filters, setFilters }: FilterBarProps) {
 
   // Handle click outside for dropdowns
   function useClickOutside(ref: React.RefObject<HTMLDivElement | null>, handler: () => void) {
-    useState(() => {
+    useEffect(() => {
       function listener(event: MouseEvent) {
         if (!ref.current || ref.current.contains(event.target as Node)) return;
         handler();
       }
       document.addEventListener("mousedown", listener);
       return () => document.removeEventListener("mousedown", listener);
-    });
+    }, [ref, handler]);
   }
   useClickOutside(titleRef, () => setShowTitleDropdown(false));
   useClickOutside(locationRef, () => setShowLocationDropdown(false));
