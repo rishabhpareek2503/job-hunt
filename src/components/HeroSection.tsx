@@ -24,8 +24,8 @@ export default function HeroSection({
         <Image src="https://img.logo.dev/netflix.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Netflix" width={24} height={24} className="hidden sm:block absolute right-[-70px] top-[130px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam5" />
         <Image src="https://img.logo.dev/apple.com?token=pk_GXHi5vUDRwm1xphnJaliqA" alt="Apple" width={24} height={24} className="hidden sm:block absolute right-[-70px] top-[220px] rounded-xl shadow-lg border-2 border-blue-100 bg-white animate-roam6" />
         <div className="flex flex-col items-center z-10 relative w-full">
-          <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full mb-3 mt-2 shadow-lg tracking-wide">
-            <svg className="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" /></svg>
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold bg-gradient-to-r from-blue-500 to-blue-700 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full mb-2 mt-1 shadow-lg tracking-wide">
+            <svg className="w-3 h-3 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" /></svg>
             No.1 Job Hunt Website
           </span>
           <h1 className="text-xl sm:text-2xl md:text-4xl font-black tracking-tight leading-[1.15] text-center mb-3 sm:mb-4">
