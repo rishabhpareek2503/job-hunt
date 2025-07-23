@@ -1,20 +1,21 @@
 'use client';
 
 import "./globals.css";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import LeftBar, { MobileMenuButton } from "../components/LeftBar";
 import { useState } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
         <div className="flex min-h-screen">
           {showLeftBar && <LeftBar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />}
           {/* Mobile menu button (top left) - only show when drawer is closed */}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import cloneDeep from "lodash.clonedeep";
 import CenterContent from "./CenterContent";
 import FilterBar from "./FilterBar";
 import { Filters } from "@/lib/types";
@@ -9,6 +10,7 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const [pendingFilters, setPendingFilters] = useState<Filters>(cloneDeep(initialFilters));
 
   useEffect(() => {
     function handleResize() {
@@ -18,6 +20,11 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // When opening the modal, copy current filters to pendingFilters
+  useEffect(() => {
+    if (showMobileFilter) setPendingFilters(cloneDeep(filters));
+  }, [showMobileFilter]);
 
   return (
     <div className="min-h-screen h-screen w-full flex flex-col bg-[#e9ecef] p-4">
@@ -49,8 +56,8 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
         )}
         {/* Mobile Filter Modal */}
         {isMobile && showMobileFilter && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40">
-            <div className="relative w-full max-w-md mx-auto bg-white rounded-2xl shadow-lg p-4 mt-8">
+          <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40">
+            <div className="relative w-full max-w-md mx-auto bg-white rounded-t-3xl shadow-lg flex flex-col h-[90vh] mt-8">
               <button
                 className="absolute top-3 right-3 text-gray-400 hover:text-blue-600 text-2xl font-bold"
                 onClick={() => setShowMobileFilter(false)}
@@ -58,7 +65,17 @@ export default function JobBoard({ initialFilters = {} }: { initialFilters?: Fil
               >
                 &times;
               </button>
-              <FilterBar filters={filters} setFilters={setFilters} />
+              <div className="flex-1 min-h-0 overflow-y-auto px-2 pb-4">
+                <FilterBar filters={pendingFilters} setFilters={setPendingFilters} />
+              </div>
+              <div className="w-full px-2 pb-4 bg-white">
+                <button
+                  className="w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transition text-lg"
+                  onClick={() => { setFilters(cloneDeep(pendingFilters)); setShowMobileFilter(false); }}
+                >
+                  Apply Filters
+                </button>
+              </div>
             </div>
           </div>
         )}

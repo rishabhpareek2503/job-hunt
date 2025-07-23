@@ -28,7 +28,7 @@ export default function HeroSection({
             <svg className="w-3 h-3 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" /></svg>
             No.1 Job Hunt Website
           </span>
-          <h1 className="text-xl sm:text-2xl md:text-4xl font-black tracking-tight leading-[1.15] text-center mb-3 sm:mb-4">
+          <h1 className="font-space-grotesk text-xl sm:text-2xl md:text-4xl font-black tracking-tight leading-[1.15] text-center mb-3 sm:mb-4">
             Search,<span className="text-blue-600">Apply</span> &<br />Get Your <span className="text-blue-600">Dream Job</span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mb-3 sm:mb-4">

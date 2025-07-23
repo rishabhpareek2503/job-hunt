@@ -9,14 +9,6 @@ import TopCompaniesSection, { Company } from "../components/TopCompaniesSection"
 import FeaturedJobsSection from "../components/FeaturedJobsSection";
 import Footer from "../components/Footer";
 
-const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Jobs", href: "#" },
-  { label: "Services", href: "#" },
-  { label: "Contact", href: "#" },
-];
-
 export default function HomePage() {
   const router = useRouter();
   const howItWorksRef = useRef<HTMLDivElement>(null);

@@ -16,19 +16,6 @@ const steps = [
     )
   },
   {
-    title: "Search Job",
-    desc: "Find jobs that match your skills and interests.",
-    icon: (
-      <svg className="w-12 h-12 text-purple-500 group-hover:animate-pulse transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" fill="#fff"/><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2"/></svg>
-    ),
-    accent: "purple",
-    accentColor: "#a855f7",
-    accentBg: "bg-purple-50",
-    accentIcon: (
-      <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#fff"/></svg>
-    )
-  },
-  {
     title: "Upload CV/Resume",
     desc: "Easily upload your CV or resume in seconds.",
     icon: (
@@ -39,6 +26,19 @@ const steps = [
     accentBg: "bg-green-50",
     accentIcon: (
       <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#fff"/></svg>
+    )
+  },
+  {
+    title: "Search Job",
+    desc: "Find jobs that match your skills and interests.",
+    icon: (
+      <svg className="w-12 h-12 text-purple-500 group-hover:animate-pulse transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" fill="#fff"/><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2"/></svg>
+    ),
+    accent: "purple",
+    accentColor: "#a855f7",
+    accentBg: "bg-purple-50",
+    accentIcon: (
+      <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#fff"/></svg>
     )
   },
   {

@@ -2,6 +2,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
+import Image from "next/image";
 
 export type Company = {
   name: string;
@@ -31,7 +32,7 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
   // Randomize animation delays for organic feel
   const delays = React.useMemo(() =>
     companies.map(() => (Math.random() * 1.5 + 0.1).toFixed(2)),
-    [companies.length]
+    [companies]
   );
   return (
     <section className="relative w-full flex flex-col items-center py-16 px-4 bg-gradient-to-b from-white to-blue-50 overflow-x-hidden">
@@ -47,14 +48,14 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
           <rect width="1440" height="320" fill="url(#companyBg)" />
         </svg>
       </div>
-      <h2 className="text-xl md:text-2xl font-extrabold text-center flex items-center justify-center gap-2 mb-2">
+      <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3 flex items-center justify-center gap-2">
         <FaBuilding className="text-blue-500 w-5 h-5" />
         <span className="text-black">Top Companies</span> <span className="text-blue-600">Hiring Now</span>
       </h2>
       <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-xs sm:max-w-2xl mx-auto mb-8">
         Get hired by the world’s best. Explore opportunities at these leading organizations.
       </p>
-      <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-6 place-items-center mb-8">
+      <div className="w-full max-w-5xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-6 place-items-center mb-8 md:mb-4">
         {companies.map((company, idx) => {
           const color = brandColors[company.name] || "#2563eb";
           return (
@@ -73,9 +74,11 @@ export default function TopCompaniesSection({ companies }: { companies: Company[
               tabIndex={0}
             >
               <div className="relative flex items-center justify-center w-20 h-20">
-                <img
+                <Image
                   src={company.logoUrl}
                   alt={company.name}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 object-contain rounded-xl group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300"
                   loading="lazy"
                   style={{

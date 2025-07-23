@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { FaTimes, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import React from "react";
 
 const navItems = [
@@ -32,27 +32,28 @@ export default function LeftBar({ isOpen = false, onClose }: { isOpen?: boolean;
         aria-hidden={!isOpen}
       />
       <nav
-        className={`fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col items-center py-4 shadow-lg z-50 transition-transform duration-300 md:hidden
+        className={`fixed top-0 left-0 h-screen w-[90vw] max-w-xs bg-white/80 backdrop-blur-xl border-r border-blue-100 flex flex-col items-center py-6 shadow-2xl z-50 transition-transform duration-300 md:hidden rounded-tr-3xl rounded-br-3xl
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
-        style={{ maxWidth: 320 }}
         aria-hidden={!isOpen}
       >
-        <div className="w-full flex items-center justify-between px-4 pt-2 pb-2">
-          <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-            <Image src="/logo.png" alt="Logo" width={32} height={32} className="rounded-full" priority />
+        <div className="w-full flex flex-col items-center justify-center mb-6">
+          <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center mb-2 border-4 border-blue-100 animate-pulse">
+            <Image src="/logo.png" alt="Logo" width={56} height={56} className="rounded-2xl" priority />
           </div>
-          <button className="text-gray-400 hover:text-blue-600 text-2xl font-bold md:hidden" onClick={onClose} aria-label="Close menu">&times;</button>
+          <span className="text-xl font-black text-blue-700 tracking-tight mb-2">JobHunt</span>
+          <button className="absolute top-4 right-4 text-gray-400 hover:text-blue-600 text-3xl font-black bg-white/80 rounded-full shadow-lg p-2 border border-blue-100 transition-all duration-200 focus:outline-none" onClick={onClose} aria-label="Close menu">&times;</button>
         </div>
-        <ul className="flex flex-col gap-4 w-full items-center mt-2">
-          {navItems.map((item) => {
+        <ul className="flex flex-col gap-2 w-full px-4">
+          {navItems.map((item, idx) => {
             const isActive = pathname === item.href;
             return (
-              <li key={item.href} className="w-full flex justify-center">
-                <Link href={item.href} className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-150 ${isActive ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-gray-500 hover:bg-gray-100'}`} onClick={onClose}>
-                  {item.icon}
-                  <span className="text-xs mt-1">{item.label}</span>
+              <li key={item.href} className="w-full">
+                <Link href={item.href} className={`flex flex-row items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-150 text-lg font-semibold ${isActive ? 'bg-blue-100 text-blue-700 shadow-md scale-[1.03]' : 'text-gray-700 hover:bg-blue-50 hover:scale-[1.02]'} group relative`} onClick={onClose}>
+                  <span className="w-8 h-8 flex items-center justify-center text-blue-600 group-hover:text-blue-800 transition-all">{item.icon}</span>
+                  <span className="text-base sm:text-lg font-bold tracking-tight">{item.label}</span>
                 </Link>
+                {idx < navItems.length - 1 && <div className="h-px bg-blue-100 my-1 mx-6" />}
               </li>
             );
           })}

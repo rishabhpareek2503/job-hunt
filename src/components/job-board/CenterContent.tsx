@@ -6,7 +6,7 @@ import { dummyJobs } from "@/lib/dummy-jobs";
 import JobPostings from "./JobPostings";
 import CardSkeleton from "./CardSkeleton";
 import { IoCloseOutline } from "react-icons/io5";
-import { Filter, ChevronDown } from "lucide-react";
+import { Filter } from "lucide-react";
 
 interface CenterContentProps {
   filters: Filters;
