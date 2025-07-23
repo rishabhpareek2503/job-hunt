@@ -124,55 +124,55 @@
 /* Company logo roaming animations */
 @keyframes roam1 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(10px,8px); }
-  40% { transform: translate(-8px,12px); }
-  60% { transform: translate(6px,-10px); }
-  80% { transform: translate(-6px,6px); }
+  15% { transform: translate(70px,25px); }
+  35% { transform: translate(40px,70px); }
+  55% { transform: translate(-60px,50px); }
+  75% { transform: translate(-40px,-40px); }
   100% { transform: translate(0,0); }
 }
 @keyframes roam2 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(-12px,6px); }
-  40% { transform: translate(8px,-10px); }
-  60% { transform: translate(-10px,10px); }
-  80% { transform: translate(10px,-6px); }
+  18% { transform: translate(-80px,35px); }
+  38% { transform: translate(-35px,80px); }
+  58% { transform: translate(60px,60px); }
+  78% { transform: translate(50px,-50px); }
   100% { transform: translate(0,0); }
 }
 @keyframes roam3 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(8px,-8px); }
-  40% { transform: translate(-10px,10px); }
-  60% { transform: translate(10px,6px); }
-  80% { transform: translate(-8px,-10px); }
+  12% { transform: translate(50px,-70px); }
+  32% { transform: translate(-70px,60px); }
+  52% { transform: translate(70px,35px); }
+  72% { transform: translate(-60px,-70px); }
   100% { transform: translate(0,0); }
 }
 @keyframes roam4 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(-8px,10px); }
-  40% { transform: translate(12px,-8px); }
-  60% { transform: translate(-6px,8px); }
-  80% { transform: translate(8px,-12px); }
+  20% { transform: translate(-70px,70px); }
+  40% { transform: translate(80px,-60px); }
+  60% { transform: translate(-50px,80px); }
+  80% { transform: translate(70px,-80px); }
   100% { transform: translate(0,0); }
 }
 @keyframes roam5 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(10px,-10px); }
-  40% { transform: translate(-12px,8px); }
-  60% { transform: translate(8px,12px); }
-  80% { transform: translate(-10px,-8px); }
+  10% { transform: translate(90px,-40px); }
+  30% { transform: translate(-90px,70px); }
+  50% { transform: translate(70px,90px); }
+  70% { transform: translate(-80px,-60px); }
   100% { transform: translate(0,0); }
 }
 @keyframes roam6 {
   0% { transform: translate(0,0); }
-  20% { transform: translate(-10px,12px); }
-  40% { transform: translate(10px,-8px); }
-  60% { transform: translate(-8px,10px); }
-  80% { transform: translate(12px,-10px); }
+  22% { transform: translate(-90px,90px); }
+  44% { transform: translate(90px,-70px); }
+  66% { transform: translate(-70px,80px); }
+  88% { transform: translate(100px,-90px); }
   100% { transform: translate(0,0); }
 }
-.animate-roam1 { animation: roam1 8s ease-in-out infinite alternate; }
-.animate-roam2 { animation: roam2 9s ease-in-out infinite alternate; }
-.animate-roam3 { animation: roam3 7.5s ease-in-out infinite alternate; }
-.animate-roam4 { animation: roam4 8.5s ease-in-out infinite alternate; }
-.animate-roam5 { animation: roam5 9.5s ease-in-out infinite alternate; }
-.animate-roam6 { animation: roam6 7.8s ease-in-out infinite alternate; }
+.animate-roam1 { animation: roam1 16s ease-in-out infinite alternate; }
+.animate-roam2 { animation: roam2 18s ease-in-out infinite alternate; }
+.animate-roam3 { animation: roam3 15s ease-in-out infinite alternate; }
+.animate-roam4 { animation: roam4 17s ease-in-out infinite alternate; }
+.animate-roam5 { animation: roam5 14s ease-in-out infinite alternate; }
+.animate-roam6 { animation: roam6 16s ease-in-out infinite alternate; }
